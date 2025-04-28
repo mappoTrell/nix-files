@@ -1,20 +1,20 @@
 { config, pkgs, inputs,... }:
-# let
+let
 #   portable = ../arduino-port;
 #   ard-portn = pkgs.arduino.overrideAttrs (previousAttrs: {
 #   postInstall = (previousAttrs.postInstall or "") + ''
 #       cp   ${portable}/test.txt qwertyui.txt
 #   '';
-# });
-# in 
+test = pkgs.arduino.overrideDerivation ( oldAttrs:{
+      postPatch =  ''
+        echo "test" > $out/share/arduino/yui.txt
+      ln -s ${inputs.ard-port}/portable $out/share/arduino/portable
+      '';
+    });
+in 
 {
   home.packages = [
-    (pkgs.arduino.overrideAttrs (finalAttrs: previousAttrs:{
-# previousAttrs.installPhase or ""
-      installPhase = ("") + ''
-        echo "test" > $out/share/arduino/yui.txt
-      '';
-    }))
+   test 
 
   ];
 }

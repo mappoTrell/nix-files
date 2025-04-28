@@ -204,8 +204,7 @@ stdenv.mkDerivation rec {
         --replace "LD_LIBRARY_PATH=" "LD_LIBRARY_PATH=$dynamicLibraryPath:"
       ln -sr "$out/share/arduino/arduino" "$out/bin/arduino"
       
-      touch $out/share/arduino/sdfg.txt
-      ln -s ${inp}/portable $out/share/arduino/portable
+      ln -s  ${inp} $out/share/arduino/portable
 
       cp -r build/shared/icons $out/share/arduino
       mkdir -p $out/share/applications
