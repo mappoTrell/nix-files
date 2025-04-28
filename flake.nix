@@ -18,7 +18,7 @@
     };
 
     kickstart-nixvim ={
-      url = "path:/home/xelix/programms/kickstart.nixvim";
+      url = "/home/xelix/programms/kickstart.nixvim";
 
       # url = "github:JMartJonesy/kickstart.nixvim";
       flake = false;
@@ -80,7 +80,21 @@
 
       };
     };
-      homeConfigurations."xelix" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."xelix@nixos" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./home-manager/home.nix
+
+        ];
+
+        # Optionally use extraSpecialArgs
+        #extraSpecialArgs = { inherit Neve; };
+
+        # to pass through arguments to home.nix
+      };
+      homeConfigurations."xelix@nixLaptop" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; };
 
