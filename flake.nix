@@ -25,7 +25,7 @@
     };
     ard-port = {
       flake = false;
-      url = "./home-manager/arduino-port/portable";
+      url = "path:/home/xelix/nixos/home-manager/arduino-port/portable";
     };
 
     plasma-manager = {

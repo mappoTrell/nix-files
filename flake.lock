@@ -3,14 +3,15 @@
     "ard-port": {
       "flake": false,
       "locked": {
-        "path": "home/xelix/programms/arduino/",
+        "lastModified": 1745857343,
+        "narHash": "sha256-ecTsnsAibN4QK/T/vnhicfvOyLnQo8SEZo+Mfu5PXkg=",
+        "path": "/home/xelix/nixos/home-manager/arduino-port/portable",
         "type": "path"
       },
       "original": {
-        "path": "home/xelix/programms/arduino/",
+        "path": "/home/xelix/nixos/home-manager/arduino-port/portable",
         "type": "path"
-      },
-      "parent": []
+      }
     },
     "bunny-yazi": {
       "flake": false,
