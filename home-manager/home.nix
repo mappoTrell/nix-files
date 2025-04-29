@@ -9,6 +9,8 @@
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
     ./hyprland
+    ../shared/stylix {}
+    inputs.stylix.homeManagerModules.stylix
     # ./arduino-port/arduino.nix
     "${inputs.kickstart-nixvim}/nixvim.nix"
   ];
@@ -17,6 +19,7 @@
   # manage.
   home.username = "xelix";
   home.homeDirectory = "/home/xelix";
+
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

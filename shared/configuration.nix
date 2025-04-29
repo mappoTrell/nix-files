@@ -10,6 +10,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hyprland
+    inputs.stylix.nixosModules.stylix
+    ./stylix {}
   ];
 
   nix.settings = {
