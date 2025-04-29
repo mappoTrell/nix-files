@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    ./scripts
   ];
   home.packages = with pkgs; [
     hyprpolkitagent
@@ -16,18 +15,20 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
+    package = null;
+    portalPackage = null;
     # set the flake package
     settings = {
       "$modifier" = "SUPER";
       bind = [
-        "$modifier,Return,exec,ghostty"
+        "$modifier,Return,exec,uwsm app -- ghostty"
         "$modifier,K,exec,list-keybinds"
         "$modifier SHIFT,Return,exec,rofi-launcher"
         "$modifier SHIFT,W,exec,web-search"
         "$modifier ALT,W,exec,wallsetter"
         "$modifier SHIFT,N,exec,swaync-client -rs"
-        "$modifier,W,exec,brave"
-        "$modifier,Y,exec,ghostty -e yazi"
+        "$modifier,W,exec,uwsm app -- brave"
+        "$modifier,Y,exec,uwsm app -- ghostty -e yazi"
         "$modifier,E,exec,emopicker9000"
         "$modifier,S,exec,screenshootin"
         "$modifier,D,exec,discord"

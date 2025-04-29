@@ -8,7 +8,7 @@
     inputs.nixvim.homeManagerModules.nixvim
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
-    ./hyprland.nix
+    ./hyprland
     # ./arduino-port/arduino.nix
     "${inputs.kickstart-nixvim}/nixvim.nix"
   ];
