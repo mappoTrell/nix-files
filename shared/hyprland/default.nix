@@ -8,21 +8,19 @@
     hyprland = {
       enable = true;
       withUWSM = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # package = inputs.hyprland.packages."${pkgs.system}".hyprland;
       # make sure to also set the portal package, so that they are in sync
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
-      xwayland.hidpi = true;
     };
     uwsm.enable = true;
 
     dconf.enable = true;
   };
 
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
+  # nix.settings = {
+  #   substituters = [];
+  #   trusted-public-keys = [];
 
   environment.systemPackages = with pkgs; [
     libnotify

@@ -7,7 +7,7 @@ pkgs.writeShellScriptBin "list-keybinds" ''
 
   msg='☣️ NOTE ☣️: Clicking with Mouse or Pressing ENTER will have NO function'
   keybinds=$(cat ~/.config/hypr/hyprland.conf | grep -E '^bind')
-  
+
   # replace #modifier with SUPER in the displayed keybinds for rofi
   display_keybinds=$(echo "$keybinds" | sed 's/\$modifier/SUPER/g')
 

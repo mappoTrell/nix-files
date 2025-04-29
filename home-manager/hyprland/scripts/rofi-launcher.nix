@@ -1,4 +1,3 @@
-
 {pkgs}:
 pkgs.writeShellScriptBin "rofi-launcher" ''
   # check if rofi is already running
