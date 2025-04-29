@@ -146,10 +146,10 @@
       display-run = " Run";
       display-filebrowser = " File";
     };
-    plugins = with pkgs; [
-      rofi-power-menu
-      rofi-network-manager
-      rofi-pulse-select
-    ];
+    # plugins = with pkgs; [
+    #   rofi-power-menu
+    #   rofi-network-manager
+    #   rofi-pulse-select
+    # ];
   };
 }
