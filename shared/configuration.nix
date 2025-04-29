@@ -111,6 +111,8 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+  programs.wshowkeys.enable = true;
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -137,6 +139,7 @@
     pkgs.yubikey-personalization
     pkgs.libclang
     pkgs.clinfo
+        brightnessctl # For Screen Brightness Control
   ];
 
   fonts.packages = [

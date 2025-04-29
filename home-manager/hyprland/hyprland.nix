@@ -22,7 +22,7 @@
       "$modifier" = "SUPER";
       bind = [
         "$modifier,Return,exec,uwsm app -- ghostty"
-        "$modifier,K,exec,list-keybinds"
+        "$modifier,SHIFT,K,exec,list-keybinds"
         "$modifier SHIFT,Return,exec,rofi-launcher"
         "$modifier SHIFT,W,exec,web-search"
         "$modifier ALT,W,exec,wallsetter"
@@ -107,6 +107,8 @@
         ",XF86AudioPrev, exec, playerctl previous"
         ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
         ",XF86MonBrightnessUp,exec,brightnessctl set +5%"
+        "$mod,F2, exec, night-shift" # Toggle night shift
+      "$mod,F3, exec, night-shift" # Toggle night shift
       ];
       bindm = [
         "$modifier, mouse:272, movewindow"
