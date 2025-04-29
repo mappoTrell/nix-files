@@ -11,13 +11,19 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-    # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
-    # url = "github:nix-community/nixvim/nixos-24.05";
+      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
+      # url = "github:nix-community/nixvim/nixos-24.05";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kickstart-nixvim ={
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    kickstart-nixvim = {
       url = "/home/xelix/programms/kickstart.nixvim";
 
       # url = "github:JMartJonesy/kickstart.nixvim";
@@ -33,10 +39,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-#     editect = {
-#       url = "path:/home/xelix/programms/editect";
-#       inputs.nixpkgs.follows = "nixpkgs";
-#     };
+    #     editect = {
+    #       url = "path:/home/xelix/programms/editect";
+    #       inputs.nixpkgs.follows = "nixpkgs";
+    #     };
     bunny-yazi = {
       url = "github:stelcodes/bunny.yazi";
       flake = false;
@@ -49,65 +55,70 @@
     # nixpkgs.url = "nixpkgs/{BRANCH-NAME}";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager,... }@inputs:
-    let
-      lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      nixosConfigurations = {
-        nixos = lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-             ./shared/configuration.nix 
-              ./desktop/nvidia.nix
-              ./desktop/hardware-configuration.nix
-              ./desktop/conf.nix
-               
-          ];
+  outputs = {
+    self,
+    nixpkgs,
+    nixos-hardware,
+    home-manager,
+    ...
+  } @ inputs: let
+    lib = nixpkgs.lib;
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    nixosConfigurations = {
+      nixos = lib.nixosSystem {
+        system = "x86_64-linux";
 
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./shared/configuration.nix
+          ./desktop/nvidia.nix
+          ./desktop/hardware-configuration.nix
+          ./desktop/conf.nix
+        ];
       };
-        nixLaptop = lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-             ./shared/configuration.nix 
-              nixos-hardware.nixosModules.framework-13-7040-amd
-              ./laptop/hardware-configuration.nix
+      nixLaptop = lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./shared/configuration.nix
+          nixos-hardware.nixosModules.framework-13-7040-amd
+          ./laptop/hardware-configuration.nix
 
-              ./laptop/conf.nix
-               
-          ];
-
+          ./laptop/conf.nix
+        ];
       };
     };
-      homeConfigurations."xelix@nixos" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home-manager/home.nix
+    homeConfigurations."xelix@nixos" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = {inherit inputs;};
+      # Specify your home configuration modules here, for example,
+      # the path to your home.nix.
+      modules = [
+        ./home-manager/home.nix
+      ];
 
-        ];
+      # Optionally use extraSpecialArgs
+      #extraSpecialArgs = { inherit Neve; };
 
-        # Optionally use extraSpecialArgs
-        #extraSpecialArgs = { inherit Neve; };
+      # to pass through arguments to home.nix
+    };
+    homeConfigurations."xelix@nixLaptop" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = {inherit inputs;};
 
-        # to pass through arguments to home.nix
-      };
-      homeConfigurations."xelix@nixLaptop" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
+      # Specify your home configuration modules here, for example,
+      # the path to your home.nix.
+      modules = [
+        ./home-manager/home.nix
+      ];
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home-manager/home.nix
+      # Optionally use extraSpecialArgs
+      #extraSpecialArgs = { inherit Neve; };
 
-        ];
-
-        # Optionally use extraSpecialArgs
-        #extraSpecialArgs = { inherit Neve; };
-
-        # to pass through arguments to home.nix
-      };
+      # to pass through arguments to home.nix
+    }; # flake.nix
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }

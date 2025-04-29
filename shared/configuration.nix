@@ -1,29 +1,27 @@
 # Edit this configuration file to define what should be installed on
- 
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hyprland
+  ];
 
   nix.settings = {
-
     trusted-substituters = ["https://devenv.cachix.org"];
-    trusted-public-keys = [ "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=" ];
-    experimental-features = [ "nix-command" "flakes" ];
+    trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.memtest86.enable = true;
-
-
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -60,15 +58,12 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-
-hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
-
-hardware.rasdaemon.enable = true;
+  hardware.rasdaemon.enable = true;
 
   #services.printing.browsed.enable = false;
-
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -83,7 +78,6 @@ hardware.rasdaemon.enable = true;
   #services.printing.enable = true;
 
   # Enable sound with pipewire.
-
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -107,10 +101,10 @@ hardware.rasdaemon.enable = true;
   users.users.xelix = {
     isNormalUser = true;
     description = "Felix Scherb";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
     shell = pkgs.fish;
   };
@@ -124,42 +118,38 @@ hardware.rasdaemon.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
+  environment.systemPackages = with pkgs; [
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    pkgs.alsa-tools
 
-
-  environment.systemPackages = with pkgs;  [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-      pkgs.alsa-tools
-
-      pkgs.tor-browser
-      # pkgs.mullvad-browser
-      pkgs.git
-      pkgs.xorg.xmessage
-      pkgs.ripgrep
-      pkgs.kitty
-      pkgs.keepassxc
-      pkgs.brave
+    pkgs.tor-browser
+    # pkgs.mullvad-browser
+    pkgs.git
+    pkgs.xorg.xmessage
+    pkgs.ripgrep
+    pkgs.kitty
+    pkgs.keepassxc
+    pkgs.brave
     pkgs.kdePackages.partitionmanager
-    
-      pkgs.yubikey-manager
-      pkgs.yubikey-personalization
-      pkgs.libclang
-      pkgs.clinfo
-          
+
+    pkgs.yubikey-manager
+    pkgs.yubikey-personalization
+    pkgs.libclang
+    pkgs.clinfo
   ];
 
-  fonts.packages = [ 
+  fonts.packages = [
     pkgs.nerd-fonts._0xproto
-      pkgs.nerd-fonts.fira-code
-    ];
-#   programs.neovim = {
-#
-#     enable = true;
-#     defaultEditor = true;
-#
-#
-#   };
-
+    pkgs.nerd-fonts.fira-code
+  ];
+  #   programs.neovim = {
+  #
+  #     enable = true;
+  #     defaultEditor = true;
+  #
+  #
+  #   };
 
   programs.steam = {
     enable = true;
@@ -169,7 +159,7 @@ hardware.rasdaemon.enable = true;
     enable = true;
     capSysNice = true;
     env = {
-      DXVK_HDR="1";
+      DXVK_HDR = "1";
     };
     args = [
       "--hdr-enabled"
@@ -177,27 +167,20 @@ hardware.rasdaemon.enable = true;
       "-r 144"
       "--hdr-itm-enable"
     ];
-
   };
 
   programs.fish = {
     enable = true;
   };
 
-  environment.sessionVariables ={
-    KWIN_DRM_ALLOW_NVIDIA_COLORSPACE=1;
-    EDITOR="nvim";
-    
+  environment.sessionVariables = {
+    KWIN_DRM_ALLOW_NVIDIA_COLORSPACE = 1;
+    EDITOR = "nvim";
   };
-
 
   environment.variables = rec {
     # PATH = [  "/home/xelix/programms/zig/zls-linux-x86_64-0.13.0/" "/home/xelix/programms/zig/zig-linux-x86_64-0.13.0/"];
-
-
   };
-
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -224,5 +207,4 @@ hardware.rasdaemon.enable = true;
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-
 }

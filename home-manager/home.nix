@@ -1,13 +1,16 @@
-{ config, pkgs, inputs,... }:
-
-
 {
-  imports = [inputs.nixvim.homeManagerModules.nixvim
-              inputs.plasma-manager.homeManagerModules.plasma-manager
-            ./yazi.nix
-            # ./arduino-port/arduino.nix
-             "${inputs.kickstart-nixvim}/nixvim.nix"
-
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+    inputs.plasma-manager.homeManagerModules.plasma-manager
+    ./yazi.nix
+    ./hyprland.nix
+    # ./arduino-port/arduino.nix
+    "${inputs.kickstart-nixvim}/nixvim.nix"
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -24,17 +27,14 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-
-
   nixpkgs.config.allowUnfree = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-
     #inputs.editect.defaultPackage.x86_64-linux
     pkgs.kdePackages.krohnkite
-    
+
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -62,11 +62,13 @@
     pkgs.libreoffice-fresh
     pkgs.zig
     pkgs.zoxide
-    (pkgs.callPackage ./arduino-port {inp=inputs.ard-port; withGui=true;})
+    (pkgs.callPackage ./arduino-port {
+      inp = inputs.ard-port;
+      withGui = true;
+    })
     pkgs.lutris
-    
   ];
-    # '')
+  # '')
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -83,23 +85,17 @@
     # '';
   };
 
-
   programs.plasma = {
     enable = true;
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
     };
-    
 
     shortcuts = {
-        "services/ghostty.desktop"."_launch" = "Ctrl+ALt+t";
-      "services/org.kde.konsole.desktop"."_launch" = [ ];
+      "services/ghostty.desktop"."_launch" = "Ctrl+ALt+t";
+      "services/org.kde.konsole.desktop"."_launch" = [];
     };
-    
-  
-
   };
-
 
   programs.ghostty = {
     enable = true;
@@ -127,31 +123,30 @@
   #  /etc/profiles/per-user/xelix/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-   SSH_AUTH_SOCK=/run/user/1000/ssh-agent;
-      EDITOR = "nvim";
+    SSH_AUTH_SOCK = /run/user/1000/ssh-agent;
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
-programs.fish = {
+
+  programs.fish = {
     enable = true;
     functions = {
       yazi_test = {
-      body = ''set tmp (mktemp -t "yazi-cwd.XXXXXX")
-              yazi $argv --cwd-file="$tmp"
-              if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-                builtin cd -- "$cwd"
-              end
-              rm -f -- "$tmp"'';
-      onEvent = "y";
+        body = ''          set tmp (mktemp -t "yazi-cwd.XXXXXX")
+                        yazi $argv --cwd-file="$tmp"
+                        if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+                          builtin cd -- "$cwd"
+                        end
+                        rm -f -- "$tmp"'';
+        onEvent = "y";
+      };
     };
-    };
-  
   };
   services.ssh-agent.enable = true;
-  
-  programs.nixvim= {
+
+  programs.nixvim = {
     enable = true;
 
     #colorschemes.catppuccin.enable =  false;
@@ -160,27 +155,27 @@ programs.fish = {
     opts = {
       #suda_smart_edit = 1;
     };
-   
-    
-    plugins.vim-suda= {
+
+    plugins.vim-suda = {
       enable = true;
     };
-    
+
     plugins.toggleterm = {
       enable = true;
       settings.open_mapping = "[[<Leader>T]]";
       settings.insert_mappings = false;
     };
   };
-  
+
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
     font.name = "FiraCode Nerd Font";
   };
-  
+
   programs.lazygit.enable = true;
   programs.zoxide = {
     enable = true;
-    enableFishIntegration = true;  };
+    enableFishIntegration = true;
+  };
 }
