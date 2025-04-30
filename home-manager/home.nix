@@ -11,6 +11,7 @@
     ./hyprland
     ../shared/stylix
     inputs.stylix.homeManagerModules.stylix
+    # inputs.anyrun.homeManagerModules.default
     # ./arduino-port/arduino.nix
     "${inputs.kickstart-nixvim}/nixvim.nix"
   ];
