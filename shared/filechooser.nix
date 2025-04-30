@@ -1,5 +1,5 @@
 {pkgs}:
-pkgs.writeShellScriptBin "rofi-launcher" ''
+pkgs.writeShellScriptBin "filechooser" ''
 # This wrapper script is invoked by xdg-desktop-portal-termfilechooser.
 #
 # For more information about input/output arguments read `xdg-desktop-portal-termfilechooser(5)`
@@ -32,7 +32,7 @@ fi
 command="$termcmd $cmd"
 for arg in "$@"; do
     # escape double quotes
-    escaped=$(printf "%s" "$arg" | ${pkgs.coreutils}bin/sed 's/"/\\"/g')
+    escaped=$(printf "%s" "$arg" | ${pkgs.gnused}/bin/sed 's/"/\\"/g')
     # escape spaces
     command="$command \"$escaped\""
 done

@@ -93,7 +93,7 @@
     force = true;
     text = ''
       [filechooser]
-      cmd=${pkgs.filechooser}
+      cmd=filechooser
       
     '';
   };
