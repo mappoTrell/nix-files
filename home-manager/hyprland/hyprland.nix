@@ -3,7 +3,18 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  border-size = config.theme.border-size;
+  gaps-in = config.theme.gaps-in;
+  gaps-out = config.theme.gaps-out;
+  active-opacity = config.theme.active-opacity;
+  inactive-opacity = config.theme.inactive-opacity;
+  rounding = config.theme.rounding;
+  blur = config.theme.blur;
+  keyboardLayout = config.var.keyboardLayout;
+  background = "rgb(" + config.lib.stylix.colors.base00 + ")";
+  lib = pkgs.lib;
+in {
   imports = [
   ];
   home.packages = with pkgs; [
@@ -19,6 +30,32 @@
     portalPackage = null;
     # set the flake package
     settings = {
+      general = {
+        resize_on_border = true;
+        gaps_in = gaps-in;
+        gaps_out = gaps-out;
+        border_size = border-size;
+        layout = "master";
+        "col.inactive_border" = lib.mkForce background;
+      };
+
+      decoration = {
+        active_opacity = active-opacity;
+        inactive_opacity = inactive-opacity;
+        rounding = rounding;
+        shadow = {
+          enabled = true;
+          range = 20;
+          render_power = 3;
+        };
+        blur = {
+          enabled =
+            if blur
+            then "true"
+            else "false";
+          size = 18;
+        };
+      };
       "$modifier" = "SUPER";
       bind = [
         "$modifier,Return,exec,uwsm app -- ghostty"
@@ -108,7 +145,7 @@
         ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
         ",XF86MonBrightnessUp,exec,brightnessctl set +5%"
         "$modifier,F2, exec, night-shift" # Toggle night shift
-      "$modifier,F3, exec, night-shift" # Toggle night shift
+        "$modifier,F3, exec, night-shift" # Toggle night shift
       ];
       bindm = [
         "$modifier, mouse:272, movewindow"

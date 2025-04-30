@@ -7,5 +7,6 @@
   imports = [
     ./hyprland.nix
     ./scripts
+    ./anyrun.nix
   ];
 }

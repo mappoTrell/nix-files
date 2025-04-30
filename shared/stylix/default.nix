@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }: {
-
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   options.theme = lib.mkOption {
     type = lib.types.attrs;
     default = {
@@ -15,7 +19,8 @@
       textColorOnWallpaper =
         config.lib.stylix.colors.base01; # Color of the text displayed on the wallpaper (Lockscreen, display manager, ...)
 
-      bar = { # Hyprpanel
+      bar = {
+        # Hyprpanel
         position = "top"; # "top" | "bottom"
         transparent = true;
         transparentButtons = false;
@@ -28,8 +33,7 @@
   config.stylix = {
     enable = true;
 
-    
-  base16Scheme = "${pkgs.base16-schemes}/share/themes/ashen.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
     # See https://tinted-theming.github.io/tinted-gallery/ for more schemes
     # base16Scheme = {
     #   base00 = "09090B"; # Default Background
@@ -81,14 +85,13 @@
         applications = 13;
         desktop = 13;
         popups = 13;
-        terminal = 13;
+        terminal = 18;
       };
     };
 
     polarity = "dark";
     image = pkgs.fetchurl {
-      url =
-        "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/vanilla_pink_purple.png";
+      url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/vanilla_pink_purple.png";
       sha256 = "sha256-JJIsoC3MaUB378RfogU7BDuXOuy7Vk048CwfyNe9FYg=";
     };
   };

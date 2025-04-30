@@ -9,7 +9,7 @@
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
     ./hyprland
-    ../shared/stylix {}
+    ../shared/stylix
     inputs.stylix.homeManagerModules.stylix
     # ./arduino-port/arduino.nix
     "${inputs.kickstart-nixvim}/nixvim.nix"
@@ -19,7 +19,6 @@
   # manage.
   home.username = "xelix";
   home.homeDirectory = "/home/xelix";
-
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -104,8 +103,8 @@
     enable = true;
     enableFishIntegration = true;
     settings = {
-      theme = "tokyonight";
-      font-size = 16;
+      # theme = "tokyonight";
+      # font-size = 16;
     };
   };
 
@@ -173,7 +172,7 @@
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
-    font.name = "FiraCode Nerd Font";
+    # font.name = "FiraCode Nerd Font";
   };
 
   programs.lazygit.enable = true;

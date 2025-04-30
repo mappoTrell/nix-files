@@ -10,12 +10,14 @@
   imports = [
     # Include the results of the hardware scan.
     ./hyprland
-    inputs.stylix.nixosModules.stylix
-    ./stylix {}
+    # inputs.stylix.nixosModules.stylix
+    # ./stylix {}
   ];
 
   nix.settings = {
-    trusted-substituters = ["https://devenv.cachix.org" "https://hyprland.cachix.org"];
+    substituters = ["https://hyprland.cachix.org"
+    ];
+    trusted-substituters = ["https://devenv.cachix.org" ];
     trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     experimental-features = ["nix-command" "flakes"];
   };
@@ -115,7 +117,6 @@
   programs.firefox.enable = true;
   programs.wshowkeys.enable = true;
 
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -141,7 +142,7 @@
     pkgs.yubikey-personalization
     pkgs.libclang
     pkgs.clinfo
-        brightnessctl # For Screen Brightness Control
+    brightnessctl # For Screen Brightness Control
   ];
 
   fonts.packages = [

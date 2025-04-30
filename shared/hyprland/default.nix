@@ -8,9 +8,9 @@
     hyprland = {
       enable = true;
       withUWSM = true;
-      # package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
       # make sure to also set the portal package, so that they are in sync
-      # portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
     uwsm.enable = true;
