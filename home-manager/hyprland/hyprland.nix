@@ -39,6 +39,12 @@ in {
         "col.inactive_border" = lib.mkForce background;
       };
 
+      render = {
+        explicit_sync = 1; # Change to 1 to disable
+        explicit_sync_kms = 1;
+        direct_scanout = 0;
+      };
+
       decoration = {
         active_opacity = active-opacity;
         inactive_opacity = inactive-opacity;

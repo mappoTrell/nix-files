@@ -87,7 +87,16 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
-
+  
+  home.sessionVariables.TERMCMD = "ghostty --class=file_chooser";
+  xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
+    force = true;
+    text = ''
+      [filechooser]
+      cmd=${pkgs.filechooser}
+      
+    '';
+  };
   programs.plasma = {
     enable = true;
     workspace = {

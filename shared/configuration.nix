@@ -15,9 +15,10 @@
   ];
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"
+    substituters = [
+      "https://hyprland.cachix.org"
     ];
-    trusted-substituters = ["https://devenv.cachix.org" ];
+    trusted-substituters = ["https://devenv.cachix.org"];
     trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     experimental-features = ["nix-command" "flakes"];
   };
@@ -122,6 +123,19 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  xdg.portal = {
+    enable = true;
+    
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-termfilechooser
+    ];
+    config = {
+      hyprland.default = [ "termfilechooser" "hyprland" ];
+    };
+    config.common = {
+      "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
