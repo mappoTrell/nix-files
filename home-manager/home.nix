@@ -9,8 +9,6 @@
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
     ./hyprland
-    ../shared/stylix
-    inputs.stylix.homeManagerModules.stylix
     # inputs.anyrun.homeManagerModules.default
     # ./arduino-port/arduino.nix
     "${inputs.kickstart-nixvim}/nixvim.nix"
@@ -88,15 +86,15 @@
     # '';
   };
   
-  home.sessionVariables.TERMCMD = "ghostty --class=file_chooser";
-  xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
+xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
     force = true;
     text = ''
       [filechooser]
       cmd=filechooser
-      
     '';
   };
+
+
   programs.plasma = {
     enable = true;
     workspace = {
@@ -134,6 +132,7 @@
   #
   #  /etc/profiles/per-user/xelix/etc/profile.d/hm-session-vars.sh
   #
+  
   home.sessionVariables = {
     SSH_AUTH_SOCK = /run/user/1000/ssh-agent;
     EDITOR = "nvim";

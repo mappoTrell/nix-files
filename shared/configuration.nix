@@ -127,24 +127,19 @@
     enable = true;
     
     extraPortals = with pkgs; [
-      xdg-desktop-portal-termfilechooser
+      xdg-desktop-portal-gtk
     ];
     config = {
-      hyprland.default = [ "termfilechooser" "hyprland" ];
-    };
-    config.common = {
-      "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+      hyprland = { 
+        default = [ "gtk" "hyprland" ]; 
+      };
+      
+      
     };
   };
 
-  xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
-    force = true;
-    text = ''
-      [filechooser]
-      cmd=filechooser
-    '';
-  };
-  environment.systemPackages = with pkgs; [
+  
+    environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     pkgs.alsa-tools
@@ -164,7 +159,6 @@
     pkgs.libclang
     pkgs.clinfo
     brightnessctl # For Screen Brightness Control
-    (import ./filechooser.nix {inherit pkgs;})
   ];
 
   fonts.packages = [

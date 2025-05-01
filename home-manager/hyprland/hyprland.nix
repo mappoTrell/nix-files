@@ -21,6 +21,9 @@ in {
     hyprpolkitagent
     wl-clipboard
     grim
+    (pkgs.hyprshade.override {
+      hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    })
   ];
 
   wayland.windowManager.hyprland = {
