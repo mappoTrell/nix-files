@@ -1,39 +1,39 @@
 {pkgs}:
 pkgs.writeShellScriptBin "filechooser" ''
-# This wrapper script is invoked by xdg-desktop-portal-termfilechooser.
-#
-# For more information about input/output arguments read `xdg-desktop-portal-termfilechooser(5)`
+  # This wrapper script is invoked by xdg-desktop-portal-termfilechooser.
+  #
+  # For more information about input/output arguments read `xdg-desktop-portal-termfilechooser(5)`
 
-set -ex
+  set -ex
 
-multiple="$1"
-directory="$2"
-save="$3"
-path="$4"
-out="$5"
+  multiple="$1"
+  directory="$2"
+  save="$3"
+  path="$4"
+  out="$5"
 
-cmd="yazi"
-termcmd="ghostty --class=file_chooser"
+  cmd="yazi"
+  termcmd="ghostty --class=file_chooser"
 
-if [ "$save" = "1" ]; then
-    # save a file
-    set -- --chooser-file="$out" "$path"
-elif [ "$directory" = "1" ]; then
-    # upload files from a directory
-    set -- --chooser-file="$out" --cwd-file="$out" "$path"
-elif [ "$multiple" = "1" ]; then
-    # upload multiple files
-    set -- --chooser-file="$out" "$path"
-else
-    # upload only 1 file
-    set -- --chooser-file="$out" "$path"
-fi
+  if [ "$save" = "1" ]; then
+      # save a file
+      set -- --chooser-file="$out" "$path"
+  elif [ "$directory" = "1" ]; then
+      # upload files from a directory
+      set -- --chooser-file="$out" --cwd-file="$out" "$path"
+  elif [ "$multiple" = "1" ]; then
+      # upload multiple files
+      set -- --chooser-file="$out" "$path"
+  else
+      # upload only 1 file
+      set -- --chooser-file="$out" "$path"
+  fi
 
-command="$termcmd $cmd"
-for arg in "$@"; do
-    # escape double quotes
-    escaped=$(printf "%s" "$arg" | ${pkgs.gnused}/bin/sed 's/"/\\"/g')
-    # escape spaces
-    command="$command \"$escaped\""
-done
+  command="$termcmd $cmd"
+  for arg in "$@"; do
+      # escape double quotes
+      escaped=$(printf "%s" "$arg" | ${pkgs.gnused}/bin/sed 's/"/\\"/g')
+      # escape spaces
+      command="$command \"$escaped\""
+  done
 ''

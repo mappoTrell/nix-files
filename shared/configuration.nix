@@ -99,6 +99,7 @@
     #media-session.enable = true;
   };
 
+  programs.kdeconnect.enable = true;
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -125,21 +126,18 @@
   # $ nix search wget
   xdg.portal = {
     enable = true;
-    
+
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
     ];
     config = {
-      hyprland = { 
-        default = [ "gtk" "hyprland" ]; 
+      hyprland = {
+        default = ["gtk" "hyprland"];
       };
-      
-      
     };
   };
 
-  
-    environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     pkgs.alsa-tools

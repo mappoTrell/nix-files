@@ -9,6 +9,7 @@
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
     ./hyprland
+    ../shared/stylix
     # inputs.anyrun.homeManagerModules.default
     # ./arduino-port/arduino.nix
     "${inputs.kickstart-nixvim}/nixvim.nix"
@@ -28,7 +29,7 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -85,15 +86,14 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
-  
-xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
+
+  xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
     force = true;
     text = ''
       [filechooser]
       cmd=filechooser
     '';
   };
-
 
   programs.plasma = {
     enable = true;
@@ -132,7 +132,7 @@ xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
   #
   #  /etc/profiles/per-user/xelix/etc/profile.d/hm-session-vars.sh
   #
-  
+
   home.sessionVariables = {
     SSH_AUTH_SOCK = /run/user/1000/ssh-agent;
     EDITOR = "nvim";
@@ -145,7 +145,7 @@ xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
     enable = true;
     functions = {
       yazi_test = {
-        body = ''          set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        body = /*fish*/''          set tmp (mktemp -t "yazi-cwd.XXXXXX")
                         yazi $argv --cwd-file="$tmp"
                         if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
                           builtin cd -- "$cwd"

@@ -80,9 +80,9 @@
           ./desktop/nvidia.nix
           ./desktop/hardware-configuration.nix
           ./desktop/conf.nix
-            inputs.home-manager.nixosModules.home-manager
-            inputs.stylix.nixosModules.stylix
-            ./shared/stylix
+          inputs.home-manager.nixosModules.home-manager
+          inputs.stylix.nixosModules.stylix
+          ./shared/stylix
         ];
       };
 
@@ -107,8 +107,7 @@
         ./home-manager/home.nix
 
         {
-          w
-            ayland.windowManager.hyprland = {
+          wayland.windowManager.hyprland = {
             settings.env = [
               "LIBVA_DRIVER_NAME , nvidia" # Hardware video acceleration
               "XDG_SESSION_TYPE , wayland" # Force ayland

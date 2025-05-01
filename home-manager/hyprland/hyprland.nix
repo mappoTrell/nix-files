@@ -48,6 +48,9 @@ in {
         direct_scanout = 0;
       };
 
+      input = {
+         kb_options = "compose:ralt";
+      };
       decoration = {
         active_opacity = active-opacity;
         inactive_opacity = inactive-opacity;
@@ -73,7 +76,7 @@ in {
         "$modifier SHIFT,W,exec,web-search"
         "$modifier ALT,W,exec,wallsetter"
         "$modifier SHIFT,N,exec,swaync-client -rs"
-        "$modifier,W,exec,uwsm app -- brave"
+        "$modifier,W,exec,uwsm app -- brave  --password-store=basic"
         "$modifier,Y,exec,uwsm app -- ghostty -e yazi"
         "$modifier,E,exec,emopicker9000"
         "$modifier,S,exec,screenshootin"
