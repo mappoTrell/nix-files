@@ -13,9 +13,6 @@
     pkgs.houdini
   ];
 
-  home-manager.extraSpecialArgs = {inherit inputs;};
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
   home-manager.users.xelix = ./home.nix;
 
   # Optionally, use home-manager.extraSpecialArgs to pass

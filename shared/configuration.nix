@@ -82,6 +82,9 @@
   # Enable CUPS to print documents.
   #services.printing.enable = true;
 
+  home-manager.extraSpecialArgs = {inherit inputs;};
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
   # Enable sound with pipewire.
 
   services.pulseaudio.enable = false;
