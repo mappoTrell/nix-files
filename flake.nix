@@ -94,6 +94,7 @@
           nixos-hardware.nixosModules.framework-13-7040-amd
           ./laptop/hardware-configuration.nix
 
+          ./shared/stylix
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
           ./laptop/conf.nix
