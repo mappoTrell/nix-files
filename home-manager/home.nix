@@ -33,9 +33,10 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs;[
     #inputs.editect.defaultPackage.x86_64-linux
     pkgs.kdePackages.krohnkite
+    
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -69,8 +70,23 @@
       withGui = true;
     })
     pkgs.lutris
+    pkgs.rose-pine-cursor
+  
   ];
   # '')
+  
+  # home.pointerCursor = {
+  #   enable = true;
+  #   package = pkgs.rose-pine-cursor;
+  #   name = "BreezeX-RoséPine";
+  # };
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      cursor-size=20;
+cursor-theme= pkgs.lib.mkForce "BreezeX-RosePine-Linux";
+
+    };
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

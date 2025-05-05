@@ -16,8 +16,8 @@
       misc.vfr = true;
       
       decoration = {
-        shadow.enabled = false;
-        blur.enabled = false;
+        shadow.enabled = pkgs.lib.mkForce false;
+        blur.enabled = pkgs.lib.mkForce false;
       };
     };
 

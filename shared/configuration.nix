@@ -16,6 +16,7 @@
 
   nix.settings = {
     substituters = [
+      "https://cache.nixos.org"
       "https://hyprland.cachix.org"
     ];
     trusted-substituters = ["https://devenv.cachix.org"];
@@ -30,6 +31,8 @@
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  programs.nix-ld.enable = true;
+  
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -85,6 +88,7 @@
   home-manager.extraSpecialArgs = {inherit inputs;};
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  home-manager.backupFileExtension = "hm-backup";
   # Enable sound with pipewire.
 
   services.pulseaudio.enable = false;

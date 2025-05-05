@@ -7,6 +7,7 @@
   imports = [
     ./hyprland.nix
     ./scripts
+    ./wofi.nix
     ./anyrun.nix
     ./animations.nix
   ];

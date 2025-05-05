@@ -72,7 +72,7 @@ in {
       bind = [
         "$modifier,Return,exec,uwsm app -- ghostty"
         "$modifier SHIFT,K,exec,list-keybinds"
-        "$modifier SHIFT,Return,exec,rofi-launcher"
+        "$modifier SHIFT,Return,exec, menu"
         "$modifier SHIFT,W,exec,web-search"
         "$modifier ALT,W,exec,wallsetter"
         "$modifier SHIFT,N,exec,swaync-client -rs"
@@ -88,12 +88,13 @@ in {
         "$modifier,M,exec,pavucontrol"
         "$modifier,Q,killactive,"
         "$modifier,P,pseudo,"
+        "$modifier,X, exec,powermenu"
         "$modifier,V,exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
         "$modifier SHIFT,I,togglesplit,"
         "$modifier,F,fullscreen,"
         "$modifier SHIFT,F,togglefloating,"
         "$modifier ALT,F,workspaceopt, allfloat"
-        "$modifier SHIFT,C,exit,"
+        "$modifier SHIFT,C,exec,quickmenu,"
         "$modifier SHIFT,left,movewindow,l"
         "$modifier SHIFT,right,movewindow,r"
         "$modifier SHIFT,up,movewindow,u"
@@ -146,7 +147,7 @@ in {
         "$modifier,mouse_down,workspace, e+1"
         "$modifier,mouse_up,workspace, e-1"
         "ALT,Tab,cyclenext"
-        "ALT,Tab,bringactivetotop"
+        "ALT,Tab,bringactivetotop,"
         ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         " ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -184,23 +185,23 @@ in {
     };
   };
   programs.waybar.enable = true;
-  programs.rofi = {
-    enable = true;
-    package = pkgs.rofi-wayland-unwrapped;
-    extraConfig = {
-      modi = "drun,filebrowser,run";
-      show-icons = true;
-      icon-theme = "Papirus";
-      font = "JetBrainsMono Nerd Font Mono 12";
-      drun-display-format = "{icon} {name}";
-      display-drun = " Apps";
-      display-run = " Run";
-      display-filebrowser = " File";
-    };
-    # plugins = with pkgs; [
-    #   rofi-power-menu
-    #   rofi-network-manager
-    #   rofi-pulse-select
-    # ];
-  };
+  # programs.rofi = {
+  #   enable = true;
+  #   package = pkgs.rofi-wayland-unwrapped;
+  #   extraConfig = {
+  #     modi = "drun,filebrowser,run";
+  #     show-icons = true;
+  #     icon-theme = "Papirus";
+  #     font = "JetBrainsMono Nerd Font Mono 12";
+  #     drun-display-format = "{icon} {name}";
+  #     display-drun = " Apps";
+  #     display-run = " Run";
+  #     display-filebrowser = " File";
+  #   };
+  #   # plugins = with pkgs; [
+  #   #   rofi-power-menu
+  #   #   rofi-network-manager
+  #   #   rofi-pulse-select
+  #   # ];
+  # };
 }
