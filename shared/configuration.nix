@@ -32,7 +32,7 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   programs.nix-ld.enable = true;
-  
+  programs.nix-ld.libraries = [pkgs.wayland];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -107,6 +107,15 @@
   };
 
   programs.kdeconnect.enable = true;
+  programs.seahorse.enable = true;
+
+  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
+
+  programs.git = {
+    enable = true;
+    package = pkgs.gitFull;
+    config.credential.helper = "libsecret";
+  };
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -151,7 +160,6 @@
 
     pkgs.tor-browser
     # pkgs.mullvad-browser
-    pkgs.git
     pkgs.xorg.xmessage
     pkgs.ripgrep
     pkgs.kitty
@@ -164,6 +172,7 @@
     pkgs.libclang
     pkgs.clinfo
     brightnessctl # For Screen Brightness Control
+    playerctl
   ];
 
   fonts.packages = [

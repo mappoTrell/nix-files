@@ -1,4 +1,3 @@
-
 {
   config,
   pkgs,
@@ -12,14 +11,12 @@
 
   wayland.windowManager.hyprland = {
     settings = {
-      
       misc.vfr = true;
-      
+
       decoration = {
         shadow.enabled = pkgs.lib.mkForce false;
         blur.enabled = pkgs.lib.mkForce false;
       };
     };
-
   };
 }

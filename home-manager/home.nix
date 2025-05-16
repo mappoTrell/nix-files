@@ -9,6 +9,7 @@
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
     ./hyprland
+    ./starship.nix
     ../shared/stylix
     # inputs.anyrun.homeManagerModules.default
     # ./arduino-port/arduino.nix
@@ -33,10 +34,9 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs;[
+  home.packages = with pkgs; [
     #inputs.editect.defaultPackage.x86_64-linux
     pkgs.kdePackages.krohnkite
-    
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -71,10 +71,9 @@
     })
     pkgs.lutris
     pkgs.rose-pine-cursor
-  
   ];
   # '')
-  
+
   # home.pointerCursor = {
   #   enable = true;
   #   package = pkgs.rose-pine-cursor;
@@ -82,9 +81,8 @@
   # };
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      cursor-size=20;
-cursor-theme= pkgs.lib.mkForce "BreezeX-RosePine-Linux";
-
+      cursor-size = 20;
+      cursor-theme = pkgs.lib.mkForce "BreezeX-RosePine-Linux";
     };
   };
 
@@ -161,12 +159,16 @@ cursor-theme= pkgs.lib.mkForce "BreezeX-RosePine-Linux";
     enable = true;
     functions = {
       yazi_test = {
-        body = /*fish*/''          set tmp (mktemp -t "yazi-cwd.XXXXXX")
-                        yazi $argv --cwd-file="$tmp"
-                        if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-                          builtin cd -- "$cwd"
-                        end
-                        rm -f -- "$tmp"'';
+        body =
+          /*
+          fish
+          */
+          ''            set tmp (mktemp -t "yazi-cwd.XXXXXX")
+                          yazi $argv --cwd-file="$tmp"
+                          if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+                            builtin cd -- "$cwd"
+                          end
+                          rm -f -- "$tmp"'';
         onEvent = "y";
       };
     };

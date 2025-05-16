@@ -49,7 +49,7 @@ in {
       };
 
       input = {
-         kb_options = "compose:ralt";
+        kb_options = "compose:ralt";
       };
       decoration = {
         active_opacity = active-opacity;
