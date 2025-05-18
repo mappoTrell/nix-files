@@ -203,6 +203,7 @@
       "-r 144"
       "--hdr-itm-enable"
     ];
+    
   };
 
   programs.fish = {

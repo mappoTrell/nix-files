@@ -8,8 +8,8 @@
     type = lib.types.attrs;
     default = {
       rounding = 20;
-      gaps-in = 5;
-      gaps-out = 5 * 2;
+      gaps-in = 3;
+      gaps-out = 3 * 2;
       active-opacity = 0.96;
       inactive-opacity = 0.92;
       blur = true;
