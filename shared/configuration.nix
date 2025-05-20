@@ -173,6 +173,7 @@
     pkgs.clinfo
     brightnessctl # For Screen Brightness Control
     playerctl
+    
   ];
 
   fonts.packages = [

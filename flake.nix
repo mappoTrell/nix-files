@@ -25,7 +25,7 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:nix-community/stylix";
 
     kickstart-nixvim = {
       url = "/home/xelix/programms/kickstart.nixvim";
