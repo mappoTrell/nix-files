@@ -31,8 +31,29 @@ in {
     systemd.enable = false;
     package = null;
     portalPackage = null;
+    plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
+      hyprexpo
+      hyprwinwrap
+    ];
     # set the flake package
+      extraConfig = ''
+        bind = SUPER, Delete, hyprexpo:expo, toggle
+
+      '';
     settings = {
+      plugins = {
+        hyprexpo = {
+          columns = 3;
+          gap_size = 5;
+          # bg_col = rgb(111111);
+          workspace_method = "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+
+          enable_gesture = true; # laptop touchpad
+          gesture_fingers = 3; # 3 or 4
+          gesture_distance = 300; # how far is the "max"
+          gesture_positive = true; # positive = swipe down. Negative = swipe up.
+        };
+      };
       general = {
         resize_on_border = true;
         gaps_in = gaps-in;
@@ -146,8 +167,8 @@ in {
         "$modifier CONTROL,left,workspace,e-1"
         "$modifier,mouse_down,workspace, e+1"
         "$modifier,mouse_up,workspace, e-1"
-        "ALT,Tab,cyclenext"
-        "ALT,Tab,bringactivetotop,"
+        # "ALT,Tab,cyclenext"
+        "ALT,Tab , layoutmsg,swapwithmaster master"
         ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         " ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -164,6 +185,8 @@ in {
         "$modifier, mouse:272, movewindow"
         "$modifier, mouse:273, resizewindow"
       ];
+
+
       env = [
         "NIXOS_OZONE_WL, 1"
         "NIXPKGS_ALLOW_UNFREE, 1"

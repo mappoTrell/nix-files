@@ -173,7 +173,6 @@
     pkgs.clinfo
     brightnessctl # For Screen Brightness Control
     playerctl
-    
   ];
 
   fonts.packages = [
@@ -204,7 +203,6 @@
       "-r 144"
       "--hdr-itm-enable"
     ];
-    
   };
 
   programs.fish = {
