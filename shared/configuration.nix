@@ -2,6 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  self,
   config,
   pkgs,
   inputs,
@@ -123,7 +124,7 @@
   users.users.xelix = {
     isNormalUser = true;
     description = "Felix Scherb";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "input" "dialout"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
@@ -158,6 +159,7 @@
     #  wget
     pkgs.alsa-tools
 
+    self.packages.${pkgs.stdenv.system}.neovim
     pkgs.tor-browser
     # pkgs.mullvad-browser
     pkgs.xorg.xmessage

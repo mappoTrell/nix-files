@@ -211,7 +211,7 @@ in
           --replace "LD_LIBRARY_PATH=" "LD_LIBRARY_PATH=$dynamicLibraryPath:"
         ln -sr "$out/share/arduino/arduino" "$out/bin/arduino"
 
-        ln -s  ${inp} $out/share/arduino/portable
+        cp -r ${inp} $out/share/arduino/portable
 
         cp -r build/shared/icons $out/share/arduino
         mkdir -p $out/share/applications

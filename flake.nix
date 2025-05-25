@@ -9,13 +9,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
-      # url = "github:nix-community/nixvim/nixos-24.05";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
+    #   # url = "github:nix-community/nixvim/nixos-24.05";
+    #
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    nvf.url = "github:notashelf/nvf";
     anyrun = {
       url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,12 +28,12 @@
     };
     stylix.url = "github:nix-community/stylix";
 
-    kickstart-nixvim = {
-      url = "/home/xelix/programms/kickstart.nixvim";
-
-      # url = "github:JMartJonesy/kickstart.nixvim";
-      flake = false;
-    };
+    # kickstart-nixvim = {
+    #   url = "/home/xelix/programms/kickstart.nixvim";
+    #
+    #   # url = "github:JMartJonesy/kickstart.nixvim";
+    #   flake = false;
+    # };
     ard-port = {
       flake = false;
       url = "path:/home/xelix/nix-files/home-manager/arduino-port/portable";
@@ -64,12 +65,24 @@
     nixpkgs,
     nixos-hardware,
     home-manager,
+    nvf,
     ...
   } @ inputs: let
     lib = nixpkgs.lib;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
+    packages.x86_64-linux.my-neovim =
+      (nvf.lib.neovimConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          # Or move this to a separate file and add it's path here instead
+          # IE: ./nvf_module.nix
+          ./nvf
+        ];
+      })
+      .neovim;
+
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         system = "x86_64-linux";

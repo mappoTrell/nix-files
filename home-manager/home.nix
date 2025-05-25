@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    # inputs.nixvim.homeManagerModules.nixvim
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
     ./hyprland
@@ -13,7 +13,7 @@
     ../shared/stylix
     # inputs.anyrun.homeManagerModules.default
     # ./arduino-port/arduino.nix
-    "${inputs.kickstart-nixvim}/nixvim.nix"
+    # "${inputs.kickstart-nixvim}/nixvim.nix"
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -175,26 +175,26 @@
   };
   services.ssh-agent.enable = true;
 
-  programs.nixvim = {
-    enable = true;
-
-    #colorschemes.catppuccin.enable =  false;
-    # imports = [ inputs.Neve.nixvimModule ];
-
-    opts = {
-      #suda_smart_edit = 1;
-    };
-
-    plugins.vim-suda = {
-      enable = true;
-    };
-
-    plugins.toggleterm = {
-      enable = true;
-      settings.open_mapping = "[[<Leader>T]]";
-      settings.insert_mappings = false;
-    };
-  };
+  # programs.nixvim = {
+  #   enable = true;
+  #
+  #   #colorschemes.catppuccin.enable =  false;
+  #   # imports = [ inputs.Neve.nixvimModule ];
+  #
+  #   opts = {
+  #     #suda_smart_edit = 1;
+  #   };
+  #
+  #   plugins.vim-suda = {
+  #     enable = true;
+  #   };
+  #
+  #   plugins.toggleterm = {
+  #     enable = true;
+  #     settings.open_mapping = "[[<Leader>T]]";
+  #     settings.insert_mappings = false;
+  #   };
+  # };
 
   programs.kitty = {
     enable = true;

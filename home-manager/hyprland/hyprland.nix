@@ -41,7 +41,7 @@ in {
 
       '';
     settings = {
-      plugins = {
+      plugin = {
         hyprexpo = {
           columns = 3;
           gap_size = 5;
