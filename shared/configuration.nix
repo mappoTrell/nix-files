@@ -159,7 +159,7 @@
     #  wget
     pkgs.alsa-tools
 
-    self.packages.${pkgs.stdenv.system}.neovim
+    self.packages.${pkgs.stdenv.system}.my-neovim
     pkgs.tor-browser
     # pkgs.mullvad-browser
     pkgs.xorg.xmessage

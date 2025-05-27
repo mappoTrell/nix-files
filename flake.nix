@@ -87,7 +87,10 @@
       nixos = lib.nixosSystem {
         system = "x86_64-linux";
 
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          inherit self;
+        };
         modules = [
           ./shared/configuration.nix
           ./desktop/nvidia.nix
@@ -101,7 +104,10 @@
 
       nixLaptop = lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          inherit self;
+        };
         modules = [
           ./shared/configuration.nix
           nixos-hardware.nixosModules.framework-13-7040-amd
@@ -116,7 +122,10 @@
     };
     homeConfigurations."xelix@nixos" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = {inherit inputs;};
+      extraSpecialArgs = {
+        inherit inputs;
+        inherit self;
+      };
       # Specify your home configuration modules here, for example,
       # the path to your home.nix.
       modules = [

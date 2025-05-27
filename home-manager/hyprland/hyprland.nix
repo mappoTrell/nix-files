@@ -36,10 +36,10 @@ in {
       hyprwinwrap
     ];
     # set the flake package
-      extraConfig = ''
-        bind = SUPER, Delete, hyprexpo:expo, toggle
+    extraConfig = ''
+      bind = SUPER, Delete, hyprexpo:expo, toggle
 
-      '';
+    '';
     settings = {
       plugin = {
         hyprexpo = {
@@ -185,7 +185,6 @@ in {
         "$modifier, mouse:272, movewindow"
         "$modifier, mouse:273, resizewindow"
       ];
-
 
       env = [
         "NIXOS_OZONE_WL, 1"
