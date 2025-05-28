@@ -17,7 +17,7 @@
       
       friendly-snippets.enable = true;
       setupOpts = {
-        keymap.preset = "enter";
+        keymap.preset = "supertab";
         signature.enabled = true;
         completion.accept.auto_brackets.enabled = false;
       };
