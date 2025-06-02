@@ -1,0 +1,9 @@
+board_manager:
+    additional_urls:
+        - https://arduino.esp8266.com/stable/package_esp8266com_index.json
+directories:
+    builtin:
+        libraries: /home/xelix/.arduino15/libraries
+    data: /home/xelix/.arduino15
+    user: /home/xelix/nix-files/home-manager/arduino-port/portable/sketchbook
+locale: en
