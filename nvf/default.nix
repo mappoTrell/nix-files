@@ -1,11 +1,20 @@
 {pkgs, ...}: {
   config.vim = {
+    extraPackages = [
+      pkgs.arduino-language-server
+      pkgs.arduino-cli
+      pkgs.clang-tools
+    ];
+
     theme.enable = true;
     theme.name = "rose-pine";
     theme.style = "moon";
 
     languages = {
+      enableFormat = true;
       nix.enable = true;
+      nix.extraDiagnostics.enable = true;
+
       zig.enable = true;
       html.enable = true;
       ts.enable = true;
@@ -14,10 +23,10 @@
     };
     autocomplete.blink-cmp = {
       enable = true;
-      
+
       friendly-snippets.enable = true;
       setupOpts = {
-        keymap.preset = "supertab";
+        keymap.preset = "super-tab";
         signature.enabled = true;
         completion.accept.auto_brackets.enabled = false;
       };
@@ -64,7 +73,7 @@
         package = "mini-surround";
         setup = "require('mini.surround').setup()";
       };
-     mini-files = {
+      mini-files = {
         package = "mini-files";
         setup = "require('mini.files').setup()";
       };
@@ -98,6 +107,30 @@
         # "clangd" = {
         #   filetypes = ["c" "arduino"];
         # };
+        "arduino" = {
+          filetypes = ["arduino"];
+
+          capabilities = {
+            textDocument = {
+              semanticTokens = null;
+            };
+            workspace = {
+              semanticTokens = null;
+            };
+          };
+          enabled = true;
+          cmd = [
+            "arduino-language-server"
+            # "${pkgs.arduino-language-server}/bin/arduino-language-server"
+            # "-clangd"      "${pkgs.clang-tools}/bin/clangd"
+            # "-clangd"      "/nix/store/06gf7f983rjm28pmycy732hdj4i7x0v8-clang-tools-19.1.7/bin/clangd"
+            # "-cli"         "${pkgs.arduino-cli}/bin/arduino-cli"
+            "-cli-config"
+            "/home/xelix/.arduinoIDE/arduino-cli.yaml"
+            "-fqbn"
+            "esp8266:esp8266:nodemcuv2"
+          ];
+        };
       };
     };
     treesitter.enable = true;
