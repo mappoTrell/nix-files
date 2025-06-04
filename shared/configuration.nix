@@ -212,7 +212,7 @@
   };
 
   environment.sessionVariables = {
-    KWIN_DRM_ALLOW_NVIDIA_COLORSPACE = 1;
+    # KWIN_DRM_ALLOW_NVIDIA_COLORSPACE = 1;
     EDITOR = "nvim";
   };
 

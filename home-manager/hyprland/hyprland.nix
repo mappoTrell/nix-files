@@ -19,7 +19,14 @@ in {
   ];
   home.packages = with pkgs; [
     hyprpolkitagent
-    wl-clipboard
+     qt5.qtwayland 
+    qt6.qtwayland
+    libsForQt5.qt5ct
+    wayland-utils
+    wayland-protocols
+    glib
+    qt6ct
+   wl-clipboard
     grim
     (pkgs.hyprshade.override {
       hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;

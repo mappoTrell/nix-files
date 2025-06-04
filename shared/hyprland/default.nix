@@ -15,6 +15,8 @@
     };
     uwsm.enable = true;
 
+    sway.enable = true;
+
     dconf.enable = true;
   };
 
