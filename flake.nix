@@ -53,6 +53,9 @@
       flake = false;
     };
 
+  
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     # use the following for unstable:
     # nixpkgs.url = "nixpkgs/nixos-unstable";
 

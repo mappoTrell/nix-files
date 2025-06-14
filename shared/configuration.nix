@@ -13,6 +13,7 @@
     ./hyprland
     # inputs.stylix.nixosModules.stylix
     # ./stylix {}
+    inputs.nix-index-database.nixosModules.nix-index
   ];
 
   nix.settings = {
@@ -37,6 +38,13 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/user/my-nixos-config";
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -158,6 +166,7 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     pkgs.alsa-tools
+    pkgs.comma
 
     self.packages.${pkgs.stdenv.system}.my-neovim
     pkgs.tor-browser
