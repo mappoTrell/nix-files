@@ -13,7 +13,7 @@
   blur = config.theme.blur;
   keyboardLayout = config.var.keyboardLayout;
   background = "rgb(" + config.lib.stylix.colors.base00 + ")";
-  active = "rgb(" + config.lib.stylix.colors.base16 + ")";
+  active = "rgb(" + config.lib.stylix.colors.base0A + ")";
   lib = pkgs.lib;
 in {
   imports = [
@@ -51,6 +51,8 @@ in {
     '';
     settings = {
       plugin = {
+        hyprscrolling = {
+        };
         hyprexpo = {
           columns = 3;
           gap_size = 5;

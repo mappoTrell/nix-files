@@ -1,7 +1,7 @@
 {
-  config,
+  # config,
   pkgs,
-  inputs,
+  # inputs,
   ...
 }: {
   programs.tmux = {
@@ -9,8 +9,8 @@
     clock24 = true;
     escapeTime = 0;
     shortcut = "a";
-    extraConfig = ''      # used for less common options, intelligently combines if defined in multiple places.
-    '';
+    # extraConfig = ''      # used for less common options, intelligently combines if defined in multiple places.
+    # '';
 
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
