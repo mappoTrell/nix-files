@@ -74,6 +74,8 @@
   ];
   # '')
 
+  qt.enable = true;
+
   # home.pointerCursor = {
   #   enable = true;
   #   package = pkgs.rose-pine-cursor;
@@ -174,6 +176,8 @@
     };
   };
   services.ssh-agent.enable = true;
+
+  # services.way-displays.enable = true;
 
   # programs.nixvim = {
   #   enable = true;

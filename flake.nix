@@ -21,13 +21,14 @@
       url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland/9958d297641b5c84dcff93f9039d80a5ad37ab00";
+    # hyprland.url = "github:hyprwm/Hyprland/9958d297641b5c84dcff93f9039d80a5ad37ab00";
+    hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
     stylix.url = "github:nix-community/stylix";
-
+    walker.url = "github:abenz1267/walker";
     # kickstart-nixvim = {
     #   url = "/home/xelix/programms/kickstart.nixvim";
     #
@@ -53,7 +54,6 @@
       flake = false;
     };
 
-  
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     # use the following for unstable:

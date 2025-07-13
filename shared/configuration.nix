@@ -12,14 +12,15 @@
     # Include the results of the hardware scan.
     ./hyprland
     # inputs.stylix.nixosModules.stylix
-    # ./stylix {}
     inputs.nix-index-database.nixosModules.nix-index
+    # ./stylix {}
   ];
 
   nix.settings = {
     substituters = [
       "https://cache.nixos.org"
       "https://hyprland.cachix.org"
+      "https://walker.cachix.org"
     ];
     trusted-substituters = ["https://devenv.cachix.org"];
     trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
@@ -39,7 +40,7 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-programs.nh = {
+  programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
@@ -81,6 +82,13 @@ programs.nh = {
   hardware.rasdaemon.enable = true;
 
   #services.printing.browsed.enable = false;
+  services.printing.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -114,6 +122,8 @@ programs.nh = {
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  programs.nix-index-database.comma.enable = true;
 
   programs.kdeconnect.enable = true;
   programs.seahorse.enable = true;
@@ -166,7 +176,7 @@ programs.nh = {
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     pkgs.alsa-tools
-    pkgs.comma
+    # pkgs.comma
 
     self.packages.${pkgs.stdenv.system}.my-neovim
     pkgs.tor-browser
@@ -184,6 +194,9 @@ programs.nh = {
     pkgs.clinfo
     brightnessctl # For Screen Brightness Control
     playerctl
+    pavucontrol
+    pkgs.iwmenu
+    pkgs.bzmenu
   ];
 
   fonts.packages = [
@@ -244,9 +257,9 @@ programs.nh = {
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [8989];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

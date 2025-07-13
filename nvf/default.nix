@@ -21,16 +21,39 @@
       python.enable = true;
       clang.enable = true;
     };
-    autocomplete.blink-cmp = {
-      enable = true;
 
-      friendly-snippets.enable = true;
-      setupOpts = {
-        keymap.preset = "super-tab";
-        signature.enabled = true;
-        completion.accept.auto_brackets.enabled = false;
+    autocomplete.nvim-cmp = {
+      enable = true;
+      setupOpts.completion.completeopt = "menu,menuone,noselect";
+      sources = {
+        buffer = "[Buffer]";
+        path = "[Path]";
       };
     };
+
+    # autocomplete.blink-cmp = {
+    #   enable = true;
+    #
+    #   # friendly-snippets.enable = true;
+    #   setupOpts = {
+    #     keymap.preset = "super-tab";
+    #     signature.enabled = true;
+    #     sources.default = [
+    #       "lsp"
+    #       "path"
+    #       "snippets"
+    #       "buffer"
+    #       "omni"
+    #       "cmdline"
+    #     ];
+    #     sources.providers = {
+    #       lsp = {
+    #         fallbacks = ["buffer"];
+    #       };
+    #     };
+    #     # completion.accept.auto_brackets.enabled = false;
+    #   };
+    # };
 
     # fzf-lua = {
     #   enable = true;
@@ -61,6 +84,10 @@
     };
 
     extraPlugins = {
+      mini-sessions = {
+        package = "mini-sessions";
+        setup = "require('mini.sessions').setup()";
+      };
       mini-ai = {
         package = "mini-ai";
         setup = "require('mini.ai').setup()";
@@ -107,30 +134,30 @@
         # "clangd" = {
         #   filetypes = ["c" "arduino"];
         # };
-        "arduino" = {
-          filetypes = ["arduino"];
-
-          capabilities = {
-            textDocument = {
-              semanticTokens = null;
-            };
-            workspace = {
-              semanticTokens = null;
-            };
-          };
-          enabled = true;
-          cmd = [
-            "arduino-language-server"
-            # "${pkgs.arduino-language-server}/bin/arduino-language-server"
-            # "-clangd"      "${pkgs.clang-tools}/bin/clangd"
-            # "-clangd"      "/nix/store/06gf7f983rjm28pmycy732hdj4i7x0v8-clang-tools-19.1.7/bin/clangd"
-            # "-cli"         "${pkgs.arduino-cli}/bin/arduino-cli"
-            "-cli-config"
-            "/home/xelix/.arduinoIDE/arduino-cli.yaml"
-            "-fqbn"
-            "esp8266:esp8266:nodemcuv2"
-          ];
-        };
+        #   "arduino" = {
+        #     filetypes = ["arduino"];
+        #
+        #     capabilities = {
+        #       textDocument = {
+        #         semanticTokens = null;
+        #       };
+        #       workspace = {
+        #         semanticTokens = null;
+        #       };
+        #     };
+        #     enabled = true;
+        #     cmd = [
+        #       "arduino-language-server"
+        #       # "${pkgs.arduino-language-server}/bin/arduino-language-server"
+        #       # "-clangd"      "${pkgs.clang-tools}/bin/clangd"
+        #       # "-clangd"      "/nix/store/06gf7f983rjm28pmycy732hdj4i7x0v8-clang-tools-19.1.7/bin/clangd"
+        #       # "-cli"         "${pkgs.arduino-cli}/bin/arduino-cli"
+        #       "-cli-config"
+        #       "/home/xelix/.arduinoIDE/arduino-cli.yaml"
+        #       "-fqbn"
+        #       "esp8266:esp8266:nodemcuv2"
+        #     ];
+        #   };
       };
     };
     treesitter.enable = true;
