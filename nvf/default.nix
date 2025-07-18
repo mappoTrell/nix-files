@@ -80,13 +80,17 @@
       tabline.enable = true;
       icons.enable = true;
       extra.enable = true;
+      # sessions.enable = true;
       #   pairs.enable = true;
     };
 
     extraPlugins = {
       mini-sessions = {
         package = "mini-sessions";
-        setup = "require('mini.sessions').setup()";
+        setup = "require('mini.sessions').setup({
+            autoread = true,
+            directory = '',
+          })";
       };
       mini-ai = {
         package = "mini-ai";

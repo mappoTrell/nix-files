@@ -8,6 +8,8 @@
     # inputs.nixvim.homeManagerModules.nixvim
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
+    ./tmux.nix
+    ./qutebrowser.nix
     ./hyprland
     ./starship.nix
     ../shared/stylix

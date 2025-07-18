@@ -52,6 +52,9 @@ in {
     settings = {
       plugin = {
         hyprscrolling = {
+          fullscreen_on_one_column = true;
+          focus_fit_method = 1;
+          follow_focus = true;
         };
         hyprexpo = {
           columns = 3;
@@ -70,7 +73,7 @@ in {
         gaps_in = gaps-in;
         gaps_out = gaps-out;
         border_size = border-size;
-        layout = "master";
+        layout = "scrolling";
         "col.inactive_border" = lib.mkForce background;
         "col.active_border" = lib.mkForce active;
       };
@@ -144,12 +147,14 @@ in {
         "$modifier ALT, 46, swapwindow,r"
         "$modifier ALT, 45, swapwindow,u"
         "$modifier ALT, 44, swapwindow,d"
-        "$modifier,left,movefocus,l"
-        "$modifier,right,movefocus,r"
+        # "$modifier,left,movefocus,l"
+        # "$modifier,right,movefocus,r"
+        "$modifier,left,layoutmsg, focus l"
+        "$modifier,right,layoutmsg, focus r"
         "$modifier,up,movefocus,u"
         "$modifier,down,movefocus,d"
-        "$modifier,h,movefocus,l"
-        "$modifier,l,movefocus,r"
+        "$modifier,h,layoutmsg, focus l"
+        "$modifier,l,layoutmsg, focus r"
         "$modifier,k,movefocus,u"
         "$modifier,j,movefocus,d"
         "$modifier,1,workspace,1"
