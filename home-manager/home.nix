@@ -73,6 +73,7 @@
     })
     pkgs.lutris
     pkgs.rose-pine-cursor
+    pkgs.protonvpn-gui
   ];
   # '')
 
