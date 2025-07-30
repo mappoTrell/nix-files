@@ -45,10 +45,9 @@ in {
       hyprscrolling
     ];
     # set the flake package
-    extraConfig = ''
-      bind = SUPER, Delete, hyprexpo:expo, toggle
-
-    '';
+    # extraConfig = ''
+    #   bind = SUPER, Delete, hyprexpo:expo, toggle
+    # '';
     settings = {
       plugin = {
         hyprscrolling = {
@@ -106,6 +105,7 @@ in {
       };
       "$modifier" = "SUPER";
       bind = [
+        "$modifier,Delete, hyprexpo:expo, toggle"
         "$modifier,Return,exec,uwsm app -- ghostty"
         "$modifier SHIFT,K,exec,list-keybinds"
         "$modifier SHIFT,Return,exec, uwsm app -- walker"

@@ -13,16 +13,15 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +53 nvf/default.nix
-badd +1 home-manager/tmux.nix
 badd +182 home-manager/home.nix
-badd +17 home-manager/qutebrowser.nix
-badd +233 shared/configuration.nix
+badd +1 home-manager/qutebrowser.nix
+badd +226 shared/configuration.nix
+badd +36 nvf/default.nix
 argglobal
 %argdel
-edit shared/configuration.nix
+edit nvf/default.nix
 argglobal
-balt home-manager/home.nix
+balt home-manager/qutebrowser.nix
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -33,12 +32,13 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 242 - ((0 * winheight(0) + 20) / 40)
+let s:l = 36 - ((23 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 242
-normal! 089|
+keepjumps 36
+normal! 09|
+lcd ~/nix-files
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

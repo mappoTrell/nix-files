@@ -59,6 +59,7 @@
     pkgs.kdePackages.kdeconnect-kde
     pkgs.wl-clipboard
     pkgs.godot_4_3
+    pkgs.jujutsu
     pkgs.scrcpy
     pkgs.qtscrcpy
     #pkgs.davinci-resolve

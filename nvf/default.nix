@@ -22,38 +22,67 @@
       clang.enable = true;
     };
 
-    autocomplete.nvim-cmp = {
-      enable = true;
-      setupOpts.completion.completeopt = "menu,menuone,noselect";
-      sources = {
-        buffer = "[Buffer]";
-        path = "[Path]";
-      };
-    };
+    keymaps = [
+      {
+        key = "<leader>bc";
+        mode = "n";
+        desc = "close buffer";
+        # silent = true;
+        action = "<cmd>bdelete<CR>";
+      }
+      {
+        key = "gd";
+        mode = "n";
+        silent = true;
+        action = "<leader>lgd";
+      }
+      {
+        key = "<leader>eh";
+        mode = "n";
+        # silent = true;
+        action = ":e .<CR>";
+      }
+      {
+        key = "<leader>ec";
+        mode = "n";
+        # silent = true;
+        action = ":e %:h<CR>";
+      }
+    ];
 
-    # autocomplete.blink-cmp = {
+    # autocomplete.nvim-cmp = {
     #   enable = true;
-    #
-    #   # friendly-snippets.enable = true;
-    #   setupOpts = {
-    #     keymap.preset = "super-tab";
-    #     signature.enabled = true;
-    #     sources.default = [
-    #       "lsp"
-    #       "path"
-    #       "snippets"
-    #       "buffer"
-    #       "omni"
-    #       "cmdline"
-    #     ];
-    #     sources.providers = {
-    #       lsp = {
-    #         fallbacks = ["buffer"];
-    #       };
-    #     };
-    #     # completion.accept.auto_brackets.enabled = false;
+    #   setupOpts.completion.completeopt = "menu,menuone,noselect";
+    #   sources = {
+    #     buffer = "[Buffer]";
+    #     path = "[Path]";
     #   };
     # };
+
+    autocomplete.blink-cmp = {
+      enable = true;
+
+      # friendly-snippets.enable = true;
+      setupOpts = {
+        keymap.preset = "super-tab";
+        signature.enabled = true;
+
+        # sources.default = [
+        #   "lsp"
+        #   "path"
+        #   "snippets"
+        #   "buffer"
+        #   "omni"
+        #   "cmdline"
+        # ];
+        # sources.providers = {
+        #   lsp = {
+        #     fallbacks = ["buffer"];
+        #   };
+        # };
+        # completion.accept.auto_brackets.enabled = false;
+      };
+    };
 
     # fzf-lua = {
     #   enable = true;
@@ -102,7 +131,22 @@
       };
       mini-surround = {
         package = "mini-surround";
-        setup = "require('mini.surround').setup()";
+        setup = "require('mini.surround').setup(
+            {
+            mappings = {
+            add = 'gsa', -- Add surrounding in Normal and Visual modes
+            delete = 'gsd', -- Delete surrounding
+            find = 'gsf', -- Find surrounding (to the right)
+            find_left = 'gsF', -- Find surrounding (to the left)
+            highlight = 'gsh', -- Highlight surrounding
+            replace = 'gsr', -- Replace surrounding
+            update_n_lines = 'gsn', -- Update `n_lines`
+
+            suffix_last = 'l', -- Suffix to search with  prev  method
+            suffix_next = 'n', -- Suffix to search with  next  method
+            },
+            }
+            )";
       };
       mini-files = {
         package = "mini-files";
