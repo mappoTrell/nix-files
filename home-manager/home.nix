@@ -8,7 +8,7 @@
     # inputs.nixvim.homeManagerModules.nixvim
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
-    ./tmux.nix
+    # ./tmux.nix
     ./qutebrowser.nix
     ./hyprland
     ./starship.nix
@@ -75,9 +75,15 @@
     pkgs.lutris
     pkgs.rose-pine-cursor
     pkgs.protonvpn-gui
+    pkgs.qgis
   ];
   # '')
 
+  programs.sesh.enable = true;
+  programs.fzf = {
+    enable = true;
+    tmux.enableShellIntegration = true;
+  };
   qt.enable = true;
 
   # home.pointerCursor = {

@@ -27,6 +27,7 @@ in {
     wayland-protocols
     glib
     qt6ct
+    walker
     wl-clipboard
     grim
     (pkgs.hyprshade.override {

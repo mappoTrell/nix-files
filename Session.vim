@@ -13,15 +13,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +182 home-manager/home.nix
+badd +69 home-manager/home.nix
 badd +1 home-manager/qutebrowser.nix
-badd +226 shared/configuration.nix
-badd +36 nvf/default.nix
+badd +199 shared/configuration.nix
+badd +128 nvf/default.nix
+badd +27 home-manager/tmux.nix
+badd +86 flake.nix
+badd +19 home-manager/hyprland/walker.nix
+badd +25 shared/hyprland/default.nix
+badd +8 home-manager/hyprland/default.nix
+badd +2 home-manager/hyprland/hyprland.nix
 argglobal
 %argdel
-edit nvf/default.nix
+edit home-manager/tmux.nix
 argglobal
-balt home-manager/qutebrowser.nix
+balt nvf/default.nix
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -32,12 +38,12 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 36 - ((23 * winheight(0) + 19) / 39)
+let s:l = 26 - ((8 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 36
-normal! 09|
+keepjumps 26
+normal! 010|
 lcd ~/nix-files
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

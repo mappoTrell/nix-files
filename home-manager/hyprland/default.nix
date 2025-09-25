@@ -10,6 +10,6 @@
     ./wofi.nix
     ./anyrun.nix
     ./animations.nix
-    ./walker.nix
+    # ./walker.nix
   ];
 }

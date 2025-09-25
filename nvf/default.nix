@@ -114,13 +114,18 @@
     };
 
     extraPlugins = {
-      mini-sessions = {
-        package = "mini-sessions";
-        setup = "require('mini.sessions').setup({
-            autoread = true,
-            directory = '',
-          })";
+      # mini-sessions = {
+      #   package = "mini-sessions";
+      #   setup = "require('mini.sessions').setup({
+      #       autoread = true,
+      #       directory = '',
+      #     })";
+      # };
+      auto-session = {
+        package = pkgs.vimPlugins.auto-session;
+        setup = "require('auto-session').setup {}";
       };
+
       mini-ai = {
         package = "mini-ai";
         setup = "require('mini.ai').setup()";

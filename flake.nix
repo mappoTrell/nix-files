@@ -28,7 +28,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     stylix.url = "github:nix-community/stylix";
-    walker.url = "github:abenz1267/walker";
+    # walker.url = "github:abenz1267/walker";
     # kickstart-nixvim = {
     #   url = "/home/xelix/programms/kickstart.nixvim";
     #
