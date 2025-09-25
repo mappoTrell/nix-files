@@ -9,6 +9,7 @@
     inputs.plasma-manager.homeManagerModules.plasma-manager
     ./yazi.nix
     # ./tmux.nix
+    ./zellij.nix
     ./qutebrowser.nix
     ./hyprland
     ./starship.nix
