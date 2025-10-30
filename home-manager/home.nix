@@ -67,7 +67,7 @@
     pkgs.vlc
     #pkgs.qgis
     pkgs.libreoffice-fresh
-    pkgs.zig
+    pkgs.zig_0_15
     pkgs.zoxide
     (pkgs.callPackage ./arduino-port {
       inp = inputs.ard-port;

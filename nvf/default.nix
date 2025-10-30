@@ -15,7 +15,13 @@
       nix.enable = true;
       nix.extraDiagnostics.enable = true;
 
-      zig.enable = true;
+      zig = {
+        enable = true;
+        lsp.enable = true;
+        treesitter.enable = true;
+        lsp.package = pkgs.zls_0_15;
+      };
+
       html.enable = true;
       ts.enable = true;
       python.enable = true;
@@ -67,20 +73,20 @@
         keymap.preset = "super-tab";
         signature.enabled = true;
 
-        # sources.default = [
-        #   "lsp"
-        #   "path"
-        #   "snippets"
-        #   "buffer"
-        #   "omni"
-        #   "cmdline"
-        # ];
-        # sources.providers = {
-        #   lsp = {
-        #     fallbacks = ["buffer"];
-        #   };
-        # };
-        # completion.accept.auto_brackets.enabled = false;
+        sources.default = [
+          "lsp"
+          "path"
+          "snippets"
+          "buffer"
+          "omni"
+          "cmdline"
+        ];
+        sources.providers = {
+          lsp = {
+            fallbacks = ["buffer"];
+          };
+        };
+        completion.accept.auto_brackets.enabled = false;
       };
     };
 
@@ -183,6 +189,12 @@
             };
           };
         };
+        # "zls" = {
+        #   cmd = ["${pkgs.zls_0_15}/bin/zls"];
+        #   settings = {
+        #     build_on_save = true;
+        #   };
+        # };
 
         # "clangd" = {
         #   filetypes = ["c" "arduino"];

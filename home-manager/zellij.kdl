@@ -6,9 +6,11 @@ post_command_discovery_hook  "echo \"$RESURRECT_COMMAND\" | sed 's| --cmd .*-vim
 
 show_startup_tips false 
 
+default_layout "compact"
+
 keybinds clear-defaults=true {
     locked {
-        bind "Ctrl g" { SwitchToMode "normal"; }
+        bind "Ctrl a" { SwitchToMode "normal"; }
     }
     pane {
         bind "left" { MoveFocus "left"; }
@@ -38,15 +40,6 @@ keybinds clear-defaults=true {
         bind "down" { GoToNextTab; }
         bind "up" { GoToPreviousTab; }
         bind "right" { GoToNextTab; }
-        bind "1" { GoToTab 1; SwitchToMode "locked"; }
-        bind "2" { GoToTab 2; SwitchToMode "locked"; }
-        bind "3" { GoToTab 3; SwitchToMode "locked"; }
-        bind "4" { GoToTab 4; SwitchToMode "locked"; }
-        bind "5" { GoToTab 5; SwitchToMode "locked"; }
-        bind "6" { GoToTab 6; SwitchToMode "locked"; }
-        bind "7" { GoToTab 7; SwitchToMode "locked"; }
-        bind "8" { GoToTab 8; SwitchToMode "locked"; }
-        bind "9" { GoToTab 9; SwitchToMode "locked"; }
         bind "[" { BreakPaneLeft; SwitchToMode "locked"; }
         bind "]" { BreakPaneRight; SwitchToMode "locked"; }
         bind "b" { BreakPane; SwitchToMode "locked"; }
@@ -172,6 +165,15 @@ keybinds clear-defaults=true {
         bind "Ctrl Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
+        bind "Ctrl Alt 1" { GoToTab 1; SwitchToMode "locked"; }
+        bind "Ctrl Alt 2" { GoToTab 2; SwitchToMode "locked"; }
+        bind "Ctrl Alt 3" { GoToTab 3; SwitchToMode "locked"; }
+        bind "Ctrl Alt 4" { GoToTab 4; SwitchToMode "locked"; }
+        bind "Ctrl Alt 5" { GoToTab 5; SwitchToMode "locked"; }
+        bind "Ctrl Alt 6" { GoToTab 6; SwitchToMode "locked"; }
+        bind "Ctrl Alt 7" { GoToTab 7; SwitchToMode "locked"; }
+        bind "Ctrl Alt 8" { GoToTab 8; SwitchToMode "locked"; }
+        bind "Ctrl Alt 9" { GoToTab 9; SwitchToMode "locked"; }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }
@@ -182,6 +184,15 @@ keybinds clear-defaults=true {
     }
     shared_except "locked" "entersearch" "renametab" "renamepane" {
         bind "esc" { SwitchToMode "locked"; }
+        bind "g" { 
+            // Note: you must use the absolute path to the plugin file
+            LaunchOrFocusPlugin "file:/home/xelix/.config/zellij/plugins/zsm.wasm" {
+                floating true
+                move_to_focused_tab true
+                show_resurrectable_sessions true
+                base_paths "/home/xelix/programms/|/home/xelix/"
+            }
+        }
     }
     shared_except "locked" "entersearch" "renametab" "renamepane" "move" {
         bind "m" { SwitchToMode "move"; }

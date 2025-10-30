@@ -104,6 +104,12 @@ in {
           size = 18;
         };
       };
+
+      exec-once = [
+        "wl-paste --type text --watch cliphist store" # Saves text
+        "wl-paste --type image --watch cliphist store" # Saves images
+      ];
+
       "$modifier" = "SUPER";
       bind = [
         "$modifier,Delete, hyprexpo:expo, toggle"
@@ -117,16 +123,19 @@ in {
         "$modifier,Y,exec,uwsm app -- ghostty -e yazi"
         "$modifier,E,exec,emopicker9000"
         "$modifier,S,exec,screenshootin"
+        "$modifier CTRL,S,exec,hyprshot -m output -o $HOME/Pictures/ScreenShots"
+        "$modifier SHIFT,S,exec,hyprshot -m window -o $HOME/Pictures/ScreenShots"
+        "$modifier ALT,S,exec,hyprshot -m region -o $HOME/Pictures/ScreenShots"
         "$modifier,D,exec,discord"
         "$modifier,O,exec,obs"
         "$modifier,C,exec,hyprpicker -a"
         "$modifier,G,exec,gimp"
         "$modifier,T,exec,pypr toggle term"
         "$modifier,M,exec,pavucontrol"
-        "$modifier,Q,killactive,"
+        "$modifier,V,exec, cliphist list | walker -d | cliphist decode | wl-copy"
         "$modifier,P,pseudo,"
         "$modifier,X, exec,powermenu"
-        "$modifier,V,exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+        "$modifier,V,exec, cliphist list | walker -dmenu | cliphist decode | wl-copy"
         "$modifier SHIFT,I,togglesplit,"
         "$modifier,F,fullscreen,"
         "$modifier SHIFT,F,togglefloating,"
