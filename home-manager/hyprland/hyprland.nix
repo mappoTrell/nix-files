@@ -30,6 +30,8 @@ in {
     walker
     wl-clipboard
     grim
+    hyprshot
+    cliphist
     (pkgs.hyprshade.override {
       hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
     })

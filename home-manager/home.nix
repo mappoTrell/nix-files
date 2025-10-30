@@ -6,7 +6,7 @@
 }: {
   imports = [
     # inputs.nixvim.homeManagerModules.nixvim
-    inputs.plasma-manager.homeManagerModules.plasma-manager
+    inputs.plasma-manager.homeModules.plasma-manager
     ./yazi.nix
     # ./tmux.nix
     ./zellij.nix
