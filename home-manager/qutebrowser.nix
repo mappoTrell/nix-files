@@ -33,8 +33,8 @@
   };
 
   home.packages = [
-    pkgs.rofi-wayland
+    pkgs.rofi
     pkgs.gnupg
-    pkgs.pinentry
+    pkgs.pinentry-qt
   ];
 }

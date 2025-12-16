@@ -26,8 +26,8 @@ in {
     wayland-utils
     wayland-protocols
     glib
-    qt6ct
-    walker
+    qt6Packages.qt6ct
+    # walker
     wl-clipboard
     grim
     hyprshot
@@ -43,9 +43,9 @@ in {
     package = null;
     portalPackage = null;
     plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
-      hyprexpo
+      # hyprexpo
       hyprwinwrap
-      hyprscrolling
+      # hyprscrolling
     ];
     # set the flake package
     # extraConfig = ''
@@ -53,29 +53,29 @@ in {
     # '';
     settings = {
       plugin = {
-        hyprscrolling = {
-          fullscreen_on_one_column = true;
-          focus_fit_method = 1;
-          follow_focus = true;
-        };
-        hyprexpo = {
-          columns = 3;
-          gap_size = 5;
-          # bg_col = rgb(111111);
-          workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
-
-          enable_gesture = true; # laptop touchpad
-          gesture_fingers = 3; # 3 or 4
-          gesture_distance = 300; # how far is the "max"
-          gesture_positive = true; # positive = swipe down. Negative = swipe up.
-        };
+        # hyprscrolling = {
+        #   fullscreen_on_one_column = true;
+        #   focus_fit_method = 1;
+        #   follow_focus = true;
+        # };
+        # hyprexpo = {
+        #   columns = 3;
+        #   gap_size = 5;
+        #   # bg_col = rgb(111111);
+        #   workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
+        #
+        #   enable_gesture = true; # laptop touchpad
+        #   gesture_fingers = 3; # 3 or 4
+        #   gesture_distance = 300; # how far is the "max"
+        #   gesture_positive = true; # positive = swipe down. Negative = swipe up.
+        # };
       };
       general = {
         resize_on_border = true;
         gaps_in = gaps-in;
         gaps_out = gaps-out;
         border_size = border-size;
-        layout = "scrolling";
+        # layout = "scrolling";
         "col.inactive_border" = lib.mkForce background;
         "col.active_border" = lib.mkForce active;
       };
@@ -114,10 +114,10 @@ in {
 
       "$modifier" = "SUPER";
       bind = [
-        "$modifier,Delete, hyprexpo:expo, toggle"
+        # "$modifier,Delete, layoutmsg,togglefit"
         "$modifier,Return,exec,uwsm app -- ghostty"
         "$modifier SHIFT,K,exec,list-keybinds"
-        "$modifier SHIFT,Return,exec, uwsm app -- walker"
+        "$modifier SHIFT,Return,exec, nc -U /run/user/1000/walker/walker.sock"
         "$modifier SHIFT,W,exec,web-search"
         "$modifier ALT,W,exec,wallsetter"
         "$modifier SHIFT,N,exec,swaync-client -rs"
@@ -134,10 +134,11 @@ in {
         "$modifier,G,exec,gimp"
         "$modifier,T,exec,pypr toggle term"
         "$modifier,M,exec,pavucontrol"
-        "$modifier,V,exec, cliphist list | walker -d | cliphist decode | wl-copy"
+        "$modifier,V,exec, walker -m clipboard"
         "$modifier,P,pseudo,"
+        "$modifier,B,exec, bzmenu --launcher walker"
+        "$modifier,Q,killactive"
         "$modifier,X, exec,powermenu"
-        "$modifier,V,exec, cliphist list | walker -dmenu | cliphist decode | wl-copy"
         "$modifier SHIFT,I,togglesplit,"
         "$modifier,F,fullscreen,"
         "$modifier SHIFT,F,togglefloating,"

@@ -7,7 +7,9 @@
   imports = [
     # inputs.nixvim.homeManagerModules.nixvim
     inputs.plasma-manager.homeModules.plasma-manager
+
     ./yazi.nix
+    ./niri
     # ./tmux.nix
     ./zellij.nix
     ./qutebrowser.nix
@@ -40,6 +42,7 @@
   home.packages = with pkgs; [
     #inputs.editect.defaultPackage.x86_64-linux
     pkgs.kdePackages.krohnkite
+    pkgs.antigravity-fhs
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.

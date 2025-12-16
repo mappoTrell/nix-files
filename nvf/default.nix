@@ -179,16 +179,16 @@
       formatOnSave = true;
 
       servers = {
-        "*" = {
-          root_markers = [".git"];
-          capabilities = {
-            textDocument = {
-              semanticTokens = {
-                multilineTokenSupport = true;
-              };
-            };
-          };
-        };
+        # "*" = {
+        #   root_markers = [".git"];
+        #   capabilities = {
+        #     textDocument = {
+        #       semanticTokens = {
+        #         multilineTokenSupport = true;
+        #       };
+        #     };
+        #   };
+        # };
         # "zls" = {
         #   cmd = ["${pkgs.zls_0_15}/bin/zls"];
         #   settings = {
@@ -227,7 +227,11 @@
     };
     treesitter.enable = true;
 
-    navigation.harpoon.enable = true;
+    navigation.harpoon = {
+      enable = true;
+      setupOpts.defaults.save_on_toggle = true;
+      setupOpts.defaults.sync_on_ui_close = true;
+    };
 
     binds.whichKey.enable = true;
     utility.sleuth.enable = true;

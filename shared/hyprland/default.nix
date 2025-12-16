@@ -13,9 +13,11 @@
       portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
+
+    niri.enable = true;
     uwsm.enable = true;
 
-    sway.enable = true;
+    # sway.enable = true;
 
     dconf.enable = true;
   };

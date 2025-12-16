@@ -49,6 +49,34 @@
     #       url = "path:/home/xelix/programms/editect";
     #       inputs.nixpkgs.follows = "nixpkgs";
     #     };
+    elephant = {
+      url = "github:abenz1267/elephant";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs = {
+        elephant.follows = "elephant";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dgop.follows = "dgop";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     bunny-yazi = {
       url = "github:stelcodes/bunny.yazi";
       flake = false;

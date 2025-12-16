@@ -11,8 +11,8 @@
     pkgs.writeShellScriptBin "menu"
     # bash
     ''
-      if pgrep wofi; then
-      	pkill wofi
+      if pgrep waker; then
+        waker -d
       else
       	wofi -p " Apps" --show drun &
       	# # Quit when not focused anymore

@@ -156,13 +156,19 @@
   users.users.xelix = {
     isNormalUser = true;
     description = "Felix Scherb";
-    extraGroups = ["networkmanager" "wheel" "input" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "input" "dialout" "podman"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
     ];
     shell = pkgs.fish;
   };
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+  virtualisation.waydroid.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -186,10 +192,15 @@
     };
   };
 
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "org.kde.okular.desktop";
+  };
+
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     pkgs.alsa-tools
+    pkgs.bottles
     # pkgs.comma
 
     pkgs.keymapp
@@ -200,8 +211,10 @@
     pkgs.ripgrep
     pkgs.kitty
     pkgs.keepassxc
+    pkgs.zls_0_15
     pkgs.brave
     pkgs.kdePackages.partitionmanager
+    pkgs.bluez
 
     pkgs.yubikey-manager
     pkgs.yubikey-personalization
@@ -214,6 +227,7 @@
     rpi-imager
     pkgs.iwmenu
     pkgs.bzmenu
+    pkgs.distrobox
   ];
 
   fonts.packages = [
