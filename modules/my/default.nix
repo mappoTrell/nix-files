@@ -33,13 +33,24 @@
       ];
     };
 
+  my.system-user =
+    { pkgs, ... }:
+    {
+      users.users.xelix = {
+        isNormalUser = true;
+        description = "Felix Scherb";
+        extraGroups = ["networkmanager" "wheel" "input" "dialout" "podman"];
+        shell = pkgs.fish;
+      };
+
+      programs.fish.enable = true;
+    };
+
   my.user = <den.lib.parametric> {
     includes = [
       <den/primary-user>
       (<den/user-shell> "fish")
-
       <hm>
-
       <xelix/packages>
       <xelix/shell>
       <xelix/development>
@@ -55,17 +66,4 @@
       <xelix/stylix>
     ];
   };
-
-  my.system-user =
-    { pkgs, ... }:
-    {
-      users.users.xelix = {
-        isNormalUser = true;
-        description = "Felix Scherb";
-        extraGroups = ["networkmanager" "wheel" "input" "dialout" "podman"];
-        shell = pkgs.fish;
-      };
-
-      programs.fish.enable = true;
-    };
 }

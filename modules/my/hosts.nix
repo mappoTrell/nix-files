@@ -1,4 +1,4 @@
-{ __findFile, inputs, ... }:
+{ inputs, ... }:
 {
   den.hosts.x86_64-linux.nixos.users.xelix.aspect = "xelix-desktop";
   den.hosts.x86_64-linux.nixLaptop.users.xelix.aspect = "xelix-laptop";
