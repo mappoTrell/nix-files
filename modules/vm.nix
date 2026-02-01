@@ -1,0 +1,13 @@
+{ inputs, ... }:
+{
+  perSystem =
+    { pkgs, ... }:
+    {
+      packages.vm = pkgs.writeShellApplication {
+        name = "vm";
+        text = ''
+          ${inputs.self.nixosConfigurations.nixos.config.system.build.vm}/bin/run-nixos-vm "$@"
+        '';
+      };
+    };
+}

@@ -2,6 +2,7 @@
   shared.base-system = {
     pkgs,
     lib,
+    inputs,
     ...
   }: {
     # Basic system configuration
@@ -289,4 +290,3 @@
     };
   };
 }
-

@@ -33,7 +33,30 @@
       ];
     };
 
-  my.user =
+  my.user = <den.lib.parametric> {
+    includes = [
+      <den/primary-user>
+      (<den/user-shell> "fish")
+
+      <hm>
+
+      <xelix/packages>
+      <xelix/shell>
+      <xelix/development>
+      <xelix/terminal>
+      <xelix/plasma>
+      <xelix/file-chooser>
+      <xelix/yazi>
+      <xelix/niri>
+      <xelix/zellij>
+      <xelix/qutebrowser>
+      <xelix/hyprland>
+      <xelix/starship>
+      <xelix/stylix>
+    ];
+  };
+
+  my.system-user =
     { pkgs, ... }:
     {
       users.users.xelix = {
@@ -44,17 +67,5 @@
       };
 
       programs.fish.enable = true;
-
-      home.username = "xelix";
-      home.homeDirectory = "/home/xelix";
-      home.stateVersion = "24.11";
-
-      programs.home-manager.enable = true;
-      services.ssh-agent.enable = true;
-
-      home.sessionVariables = {
-        SSH_AUTH_SOCK = /run/user/1000/ssh-agent;
-        EDITOR = "nvim";
-      };
     };
 }

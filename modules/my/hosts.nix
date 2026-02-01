@@ -23,40 +23,13 @@
 
   den.aspects = {
     xelix-desktop.includes = [
+      <my/system-user>
       <my/user>
-      <xelix/packages>
-      <xelix/shell>
-      <xelix/development>
-      <xelix/terminal>
-      <xelix/plasma>
-      <xelix/nvidia-env>
-      <xelix/file-chooser>
-      <xelix/yazi>
-      <xelix/niri>
-      <xelix/zellij>
-      <xelix/qutebrowser>
-      <xelix/hyprland>
-      <xelix/starship>
-      <xelix/stylix>
-      <hm>
     ];
 
     xelix-laptop.includes = [
+      <my/system-user>
       <my/user>
-      <xelix/packages>
-      <xelix/shell>
-      <xelix/development>
-      <xelix/terminal>
-      <xelix/plasma>
-      <xelix/file-chooser>
-      <xelix/yazi>
-      <xelix/niri>
-      <xelix/zellij>
-      <xelix/qutebrowser>
-      <xelix/hyprland>
-      <xelix/starship>
-      <xelix/stylix>
-      <hm>
     ];
 
     nixos.includes = [

@@ -1,0 +1,3 @@
+{
+  # Default module configurations
+}
