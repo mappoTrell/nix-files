@@ -41,7 +41,7 @@ in {
     enable = true;
     systemd.enable = false;
     package = null;
-    portalPackage = null;
+    # portalPackage = null;
     plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
       # hyprexpo
       hyprwinwrap
@@ -109,6 +109,7 @@ in {
 
       exec-once = [
         "wl-paste --type text --watch cliphist store" # Saves text
+        "waybar"
         "wl-paste --type image --watch cliphist store" # Saves images
       ];
 
@@ -239,7 +240,7 @@ in {
   programs.waybar = {
     enable = true;
 
-    systemd.enable = true;
+    # systemd.enable = true;
 
     settings = [
       {

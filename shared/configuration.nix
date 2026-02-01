@@ -192,14 +192,27 @@
     };
   };
 
+  xdg.portal.config.common.default = "*";
+
   xdg.mime.defaultApplications = {
     "application/pdf" = "org.kde.okular.desktop";
   };
+
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["xelix"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  virtualisation.libvirtd.qemu.vhostUserPackages = [pkgs.virtiofsd];
+
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = ["xelix"];
 
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     pkgs.alsa-tools
+    pkgs.quickemu
+    pkgs.samba
     pkgs.bottles
     # pkgs.comma
 
@@ -317,7 +330,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [8989];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
