@@ -5,5 +5,6 @@
     (inputs.den.namespace "my" false)
     (inputs.den.namespace "xelix" false) 
     (inputs.den.namespace "shared" true)
+    ./home-manager.nix
   ];
 }

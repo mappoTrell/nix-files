@@ -22,44 +22,42 @@
   };
 
   den.aspects = {
-    xelix-desktop = <den.lib.parametric> {
-      includes = [
-        <xelix/base-user>
-        <xelix/packages>
-        <xelix/shell>
-        <xelix/development>
-        <xelix/terminal>
-        <xelix/plasma>
-        <xelix/nvidia-env>
-        <xelix/file-chooser>
-        <xelix/yazi>
-        <xelix/niri>
-        <xelix/zellij>
-        <xelix/qutebrowser>
-        <xelix/hyprland>
-        <xelix/starship>
-        <xelix/stylix>
-      ];
-    };
+    xelix-desktop.includes = [
+      <my/user>
+      <xelix/packages>
+      <xelix/shell>
+      <xelix/development>
+      <xelix/terminal>
+      <xelix/plasma>
+      <xelix/nvidia-env>
+      <xelix/file-chooser>
+      <xelix/yazi>
+      <xelix/niri>
+      <xelix/zellij>
+      <xelix/qutebrowser>
+      <xelix/hyprland>
+      <xelix/starship>
+      <xelix/stylix>
+      <hm>
+    ];
 
-    xelix-laptop = <den.lib.parametric> {
-      includes = [
-        <xelix/base-user>
-        <xelix/packages>
-        <xelix/shell>
-        <xelix/development>
-        <xelix/terminal>
-        <xelix/plasma>
-        <xelix/file-chooser>
-        <xelix/yazi>
-        <xelix/niri>
-        <xelix/zellij>
-        <xelix/qutebrowser>
-        <xelix/hyprland>
-        <xelix/starship>
-        <xelix/stylix>
-      ];
-    };
+    xelix-laptop.includes = [
+      <my/user>
+      <xelix/packages>
+      <xelix/shell>
+      <xelix/development>
+      <xelix/terminal>
+      <xelix/plasma>
+      <xelix/file-chooser>
+      <xelix/yazi>
+      <xelix/niri>
+      <xelix/zellij>
+      <xelix/qutebrowser>
+      <xelix/hyprland>
+      <xelix/starship>
+      <xelix/stylix>
+      <hm>
+    ];
 
     nixos.includes = [
       <xelix/nvidia-desktop>

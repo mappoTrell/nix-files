@@ -33,8 +33,8 @@
       ];
     };
 
-  my.user-config =
-    { pkgs, lib, ... }:
+  my.user =
+    { pkgs, ... }:
     {
       users.users.xelix = {
         isNormalUser = true;
@@ -44,5 +44,17 @@
       };
 
       programs.fish.enable = true;
+
+      home.username = "xelix";
+      home.homeDirectory = "/home/xelix";
+      home.stateVersion = "24.11";
+
+      programs.home-manager.enable = true;
+      services.ssh-agent.enable = true;
+
+      home.sessionVariables = {
+        SSH_AUTH_SOCK = /run/user/1000/ssh-agent;
+        EDITOR = "nvim";
+      };
     };
 }
