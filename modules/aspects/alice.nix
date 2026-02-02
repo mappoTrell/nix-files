@@ -50,7 +50,7 @@
   # **anytime** at least the `user` data is in context.
   # read more at https://vic.github.io/den/context-aware.html
   den.aspects.cooper = {user, ...}: {
-    nixos.users.users.${user.userName}.description = "Alice Cooper";
+    nixos.users.users.${user.userName}.description = "Felix Scherb";
   };
 
   den.aspects.setHost = {host, ...}: {

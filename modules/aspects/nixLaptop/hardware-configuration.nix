@@ -1,4 +1,5 @@
-{
+{inputs, ...}: {
+  flake-file.inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   den.aspects.nixLaptop.nixos = {
     config,
     lib,
@@ -8,6 +9,7 @@
   }: {
     imports = [
       (modulesPath + "/installer/scan/not-detected.nix")
+      inputs.nixos-hardware.nixosModules.framework-13-7040-amd
     ];
 
     boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod"];
@@ -19,6 +21,8 @@
       device = "/dev/disk/by-uuid/2dd16fc7-6177-42c9-a3c4-5ec5b3382087";
       fsType = "ext4";
     };
+
+    environment.systemPackages = [pkgs.neofetch];
 
     fileSystems."/boot" = {
       device = "/dev/disk/by-uuid/72E7-022E";
