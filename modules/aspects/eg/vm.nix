@@ -9,6 +9,7 @@
     tui.includes = [
       eg.vm
       eg.vm-bootable._.tui
+      eg.niri
     ];
   };
 }

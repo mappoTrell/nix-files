@@ -20,6 +20,7 @@
     in [
       # from local bindings.
       customEmacs
+      eg.niri
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
       den.aspects.setHost

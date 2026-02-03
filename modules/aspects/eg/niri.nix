@@ -1,14 +1,19 @@
-{...}: {
+# {
+#   inputs,
+#   config,
+#   ...
+# }:
+{
   flake-file.inputs = {
-    dgop = {
-      url = "github:AvengeMedia/dgop";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # dgop = {
+    #   url = "github:AvengeMedia/dgop";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.dgop.follows = "dgop";
+      # inputs.dgop.follows = "dgop";
     };
 
     niri = {
@@ -17,9 +22,10 @@
     };
   };
 
-  eg.niri.nixos = {
+  eg.niri2.nixos = {
     inputs,
     pkgs,
+    ...
   }: {
     imports = [
       inputs.niri.nixosModules.niri
@@ -39,7 +45,7 @@
     };
   };
 
-  eg.niri.homeManager = {
+  eg.niri2.homeManager = {
     config,
     pkgs,
     inputs,
@@ -81,9 +87,9 @@
         listToAttrs (pairs prefixes (prefix: pairs suffixes (suffix: [(format prefix suffix)])));
     in {
       imports = [
-        # inputs.niri.homeModules.niri
-        inputs.dankMaterialShell.homeModules.dankMaterialShell.default
-        inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+        inputs.niri.homeModules.niri
+        inputs.niri.homeModules.config
+        # inputs.dankMaterialShell.homeModules.dankMaterialShell
       ];
 
       # programs.niri.enable = true;
@@ -277,22 +283,24 @@
 
         # animations.window-resize.custom-shader = builtins.readFile ./resize.glsl;
 
-        window-rules = let
-          colors = config.lib.stylix.colors.withHashtag;
-        in [
-          {
-            draw-border-with-background = false;
-            geometry-corner-radius = let
-              r = 8.0;
-            in {
-              top-left = r;
-              top-right = r;
-              bottom-left = r;
-              bottom-right = r;
-            };
-            clip-to-geometry = true;
-          }
-        ];
+        window-rules =
+          # let
+          # colors = config.lib.stylix.colors.withHashtag;
+          # in
+          [
+            {
+              draw-border-with-background = false;
+              geometry-corner-radius = let
+                r = 8.0;
+              in {
+                top-left = r;
+                top-right = r;
+                bottom-left = r;
+                bottom-right = r;
+              };
+              clip-to-geometry = true;
+            }
+          ];
         #   {
         #     matches = [
         #       {
@@ -415,26 +423,26 @@
 
       # programs.niri.package = null;
 
-      programs.dankMaterialShell = {
-        enable = true;
-
-        systemd = {
-          # enable = true; # Systemd service for auto-start
-          restartIfChanged = true; # Auto-restart dms.service when dankMaterialShell changes
-        };
-        niri = {
-          # enableKeybinds = true; # Automatic keybinding configuration
-          enableSpawn = true; # Auto-start DMS with niri
-        };
-        enableSystemMonitoring = true; # System monitoring widgets (dgop)
-        # enableClipboard = true; # Clipboard history manager
-        enableVPN = true; # VPN management widget
-        # enableBrightnessControl = true; # Backlight/brightness controls
-        # enableColorPicker = true; # Color picker tool
-        # enableDynamicTheming = true; # Wallpaper-based theming (matugen)
-        # enableAudioWavelength = true; # Audio visualizer (cava)
-        # enableCalendarEvents = true; # Calendar integration (khal)
-        # enableSystemSound = true; # System sound effects
-      };
+      # programs.dankMaterialShell = {
+      #   enable = true;
+      #
+      #   systemd = {
+      #     # enable = true; # Systemd service for auto-start
+      #     restartIfChanged = true; # Auto-restart dms.service when dankMaterialShell changes
+      #   };
+      #   niri = {
+      #     # enableKeybinds = true; # Automatic keybinding configuration
+      #     enableSpawn = true; # Auto-start DMS with niri
+      #   };
+      #   enableSystemMonitoring = true; # System monitoring widgets (dgop)
+      #   # enableClipboard = true; # Clipboard history manager
+      #   enableVPN = true; # VPN management widget
+      #   # enableBrightnessControl = true; # Backlight/brightness controls
+      #   # enableColorPicker = true; # Color picker tool
+      #   # enableDynamicTheming = true; # Wallpaper-based theming (matugen)
+      #   # enableAudioWavelength = true; # Audio visualizer (cava)
+      #   # enableCalendarEvents = true; # Calendar integration (khal)
+      #   # enableSystemSound = true; # System sound effects
+      # };
     };
 }
