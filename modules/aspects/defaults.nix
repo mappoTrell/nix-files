@@ -4,8 +4,7 @@
   __findFile ? __findFile,
   den,
   ...
-}:
-{
+}: {
   # Lets also configure some defaults using aspects.
   # These are global static settings.
   den.default = {
@@ -18,6 +17,7 @@
   den.default.includes = [
     # ${user}.provides.${host} and ${host}.provides.${user}
     <eg/routes>
+    # <eg/niri>
 
     # Enable home-manager on all hosts.
     <den/home-manager>
@@ -26,7 +26,11 @@
     <den/define-user>
 
     # Disable booting when running on CI on all NixOS hosts.
-    (if config ? _module.args.CI then <eg/ci-no-boot> else { })
+    (
+      if config ? _module.args.CI
+      then <eg/ci-no-boot>
+      else {}
+    )
 
     # NOTE: be cautious when adding fully parametric functions to defaults.
     # defaults are included on EVERY host/user/home, and IF you are not careful
@@ -37,11 +41,13 @@
     #
     #  # Instead try to be explicit if a function is intended for ONLY { host }.
     (den.lib.take.exactly (
-      { OS, host }:
-      den.lib.take.unused OS {
-        nixos.networking.hostName = host.hostName;
-      }
+      {
+        OS,
+        host,
+      }:
+        den.lib.take.unused OS {
+          nixos.networking.hostName = host.hostName;
+        }
     ))
-
   ];
 }

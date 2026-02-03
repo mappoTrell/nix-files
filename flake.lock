@@ -1,11 +1,32 @@
 {
   "nodes": {
-    "dankMaterialShell": {
+    "dank-material-shell": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ],
         "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1770134613,
+        "narHash": "sha256-YjwlcLT/Of9MLIlQeWZ5XBHW4GbKRV1nUB5zGcYZznE=",
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "rev": "3c4749ead0ef30237330cc56437990164b575c76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "type": "github"
+      }
+    },
+    "dankMaterialShell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell_2"
       },
       "locked": {
         "lastModified": 1770067799,
@@ -250,6 +271,28 @@
     "quickshell": {
       "inputs": {
         "nixpkgs": [
+          "dank-material-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1766725085,
+        "narHash": "sha256-O2aMFdDUYJazFrlwL7aSIHbUSEm3ADVZjmf41uBJfHs=",
+        "ref": "refs/heads/master",
+        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
+        "revCount": 715,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      },
+      "original": {
+        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      }
+    },
+    "quickshell_2": {
+      "inputs": {
+        "nixpkgs": [
           "dankMaterialShell",
           "nixpkgs"
         ]
@@ -271,6 +314,7 @@
     },
     "root": {
       "inputs": {
+        "dank-material-shell": "dank-material-shell",
         "dankMaterialShell": "dankMaterialShell",
         "darwin": "darwin",
         "den": "den",

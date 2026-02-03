@@ -2,11 +2,15 @@
   den,
   eg,
   inputs,
+  __findFile,
   ...
 }: {
   den.aspects.nixLaptop = {
     # igloo host provides some home-manager defaults to its users.
     homeManager.programs.direnv.enable = true;
+    includes = [
+      eg.laptop
+    ];
 
     nixos = {pkgs, ...}: {
       environment.systemPackages = [pkgs.hello];

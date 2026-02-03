@@ -23,13 +23,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  # styx.wayland._.niri = {host, ...}:
   eg.niri = {host, ...}:
+  # eg.niri = {host, ...}:
     den.lib.parametric.fixedTo {inherit host;} {
-      # includes = [
-      #   styx.wayland._.base
-      #   styx.apps._.vicinae
-      # ];
+      includes = [
+        #   styx.wayland._.base
+        #   styx.apps._.vicinae
+      ];
       nixos = {
         config,
         pkgs,
@@ -56,7 +56,7 @@
           niri.package = pkgs.niri;
           dank-material-shell.greeter = {
             enable = true;
-            configHome = "/home/quasi";
+            configHome = "/home/xelix";
             compositor.name = "niri";
             compositor.customConfig = inputs.niri.lib.kdl.serialize.nodes (
               builtins.filter (
@@ -73,7 +73,7 @@
         };
         services = {
           accounts-daemon.enable = true;
-          greetd.settings.default_session.user = "quasi";
+          greetd.settings.default_session.user = "xelix";
           gvfs.enable = true;
           geoclue2 = {
             enable = true;
@@ -124,24 +124,24 @@
             };
           };
 
-          outputs =
-            lib.mapAttrs (
-              _: v:
-                with v; {
-                  mode = {inherit width height refresh;};
-                  scale = scaling;
-                  position = {inherit x y;};
-                  variable-refresh-rate = vrr;
-                  focus-at-startup = lib.mkIf primary true;
-                }
-            )
-            host.displays;
+          # outputs =
+          #   lib.mapAttrs (
+          #     _: v:
+          #       with v; {
+          #         mode = {inherit width height refresh;};
+          #         scale = scaling;
+          #         position = {inherit x y;};
+          #         variable-refresh-rate = vrr;
+          #         focus-at-startup = lib.mkIf primary true;
+          #       }
+          #   )
+          #   host.displays;
 
-          spawn-at-startup = [
-            {sh = "swww img -o HDMI-A-1 ${inputs.self + /assets/campfire.gif}";}
-          ];
+          # spawn-at-startup = [
+          #   {sh = "swww img -o HDMI-A-1 ${inputs.self + /assets/campfire.gif}";}
+          # ];
 
-          cursor.theme = config.home.pointerCursor.name;
+          # cursor.theme = config.home.pointerCursor.name;
 
           prefer-no-csd = true;
 
