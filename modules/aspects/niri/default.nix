@@ -48,7 +48,7 @@
             satty
             celluloid
             loupe
-            dsearch
+            # dsearch
           ];
         };
         programs = {
@@ -58,17 +58,17 @@
             enable = true;
             configHome = "/home/xelix";
             compositor.name = "niri";
-            compositor.customConfig = inputs.niri.lib.kdl.serialize.nodes (
-              builtins.filter (
-                n:
-                  lib.elem n.name [
-                    "hotkey-overlay"
-                    "input"
-                    "output"
-                  ]
-              )
-              config.home-manager.users.quasi.programs.niri.config
-            );
+            # compositor.customConfig = inputs.niri.lib.kdl.serialize.nodes (
+            #   builtins.filter (
+            #     n:
+            #       lib.elem n.name [
+            #         "hotkey-overlay"
+            #         "input"
+            #         "output"
+            #       ]
+            #   )
+            #   config.home-manager.users.quasi.programs.niri.config
+            # );
           };
         };
         services = {

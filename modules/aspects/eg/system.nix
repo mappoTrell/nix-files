@@ -1,12 +1,13 @@
 {
   eg,
   den,
-  __finFile,
+  __findFile,
   ...
 }: {
-  eg.laptop = den.parametric.atLeast {
+  eg.laptop = den.lib.parametric.atLeast {
     includes = [
-      <eg/niri>
+      # <eg/niri>
+      eg.niri
     ];
   };
 }

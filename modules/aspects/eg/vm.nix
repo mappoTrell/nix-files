@@ -3,13 +3,13 @@
     gui.includes = [
       eg.vm
       eg.vm-bootable._.gui
-      eg.niri
+      eg.laptop
     ];
 
     tui.includes = [
       eg.vm
       eg.vm-bootable._.tui
-      eg.niri
+      # eg.niri
     ];
   };
 }
