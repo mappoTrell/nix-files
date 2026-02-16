@@ -90,6 +90,11 @@
   };
   qt.enable = true;
 
+  programs.direnv = {
+    enable = true;
+    # enableFishIntegration = true;
+    nix-direnv.enable = true;
+  };
   # home.pointerCursor = {
   #   enable = true;
   #   package = pkgs.rose-pine-cursor;
