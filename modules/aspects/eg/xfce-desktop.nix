@@ -10,7 +10,7 @@
     };
 
     services.displayManager = {
-      defaultSession = lib.mkDefault "xfce";
+      defaultSession = lib.mkDefault "niri";
       enable = true;
     };
   };

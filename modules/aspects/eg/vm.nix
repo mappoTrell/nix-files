@@ -21,6 +21,7 @@
     gui.includes = [
       eg.vm
       eg.vm-bootable._.gui
+      eg.xfce-desktop
       # eg.niri
       # eg.laptop
     ];

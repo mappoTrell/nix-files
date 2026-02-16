@@ -27,7 +27,7 @@
       <eg/niri>
       den.aspects.setHost
       # from the `eg` namespace.
-      # eg.autologin
+      eg.autologin
       # den included batteries that provide common configs.
       <den/primary-user> # alice is admin always.
       (<den/user-shell> "fish") # default user shell

@@ -53,9 +53,9 @@
           ];
         };
         services.displayManager = {
-          # defaultSession = lib.mkDefault "niri";
-          # sddm.enable = true;
-          enable = pkgs.lib.mkForce false;
+          defaultSession = lib.mkForce "niri";
+          sddm.enable = true;
+          # enable = pkgs.lib.mkForce false;
         };
 
         # sway.enable = true;
