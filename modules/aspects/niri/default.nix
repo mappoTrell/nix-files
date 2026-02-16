@@ -54,7 +54,7 @@
         };
         services.displayManager = {
           defaultSession = lib.mkForce "niri";
-          sddm.enable = true;
+          # sddm.enable = true;
           # enable = pkgs.lib.mkForce false;
         };
 

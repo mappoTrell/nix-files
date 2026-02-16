@@ -10,7 +10,9 @@
     homeManager.programs.direnv.enable = true;
 
     includes = [
-      eg.nividia
+      eg.nvidia
+      eg.bootloader
+      eg.ly
       # eg.laptop
     ];
 
