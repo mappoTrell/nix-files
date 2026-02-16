@@ -48,6 +48,7 @@ in {
   # programs.niri.enable = true;
   programs.niri.settings = {
     input.mouse.accel-speed = 1.0;
+    input.keyboard.xkb.options = "compose:ralt";
     input.touchpad = {
       tap = true;
       dwt = true;

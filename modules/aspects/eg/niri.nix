@@ -22,26 +22,30 @@
     };
   };
 
-  eg.niri2.nixos = {
-    inputs,
-    pkgs,
-    ...
-  }: {
-    imports = [
-      inputs.niri.nixosModules.niri
-    ];
+  eg.niri2 = {
+    includes = [];
+    
+    nixos = {
+      inputs,
+      pkgs,
+      ...
+    }: {
+      imports = [
+        inputs.niri.nixosModules.niri
+      ];
 
-    nixpkgs.overlays = [inputs.niri.overlays.niri];
-    programs.niri.package = pkgs.niri-unstable;
-    systemd.user.services.niri-flake-polkit.enable = false;
+      nixpkgs.overlays = [inputs.niri.overlays.niri];
+      programs.niri.package = pkgs.niri-unstable;
+      systemd.user.services.niri-flake-polkit.enable = false;
 
-    programs = {
-      niri.enable = true;
-      uwsm.enable = true;
+      programs = {
+        niri.enable = true;
+        uwsm.enable = true;
 
-      # sway.enable = true;
+        # sway.enable = true;
 
-      dconf.enable = true;
+        dconf.enable = true;
+      };
     };
   };
 

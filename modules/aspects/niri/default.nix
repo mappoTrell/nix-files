@@ -25,7 +25,8 @@
   };
   eg.niri = {host, ...}:
   # eg.niri = {host, ...}:
-    den.lib.parametric.fixedTo {inherit host;} {
+    den.lib.parametric.fixedTo {inherit host;}
+    {
       includes = [
         #   styx.wayland._.base
         #   styx.apps._.vicinae
@@ -51,11 +52,23 @@
             # dsearch
           ];
         };
+        services.displayManager = {
+          # defaultSession = lib.mkDefault "niri";
+          # sddm.enable = true;
+          enable = pkgs.lib.mkForce false;
+        };
+
+        # sway.enable = true;
+
+        # dconf.enable = true;
+        # systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
         programs = {
+          uwsm.enable = true;
+          dconf.enable = true;
           niri.enable = true;
           niri.package = pkgs.niri;
           dank-material-shell.greeter = {
-            enable = true;
+            # enable = true;
             configHome = "/home/xelix";
             compositor.name = "niri";
             # compositor.customConfig = inputs.niri.lib.kdl.serialize.nodes (
@@ -72,11 +85,11 @@
           };
         };
         services = {
-          accounts-daemon.enable = true;
+          # accounts-daemon.enable = true;
           greetd.settings.default_session.user = "xelix";
           gvfs.enable = true;
           geoclue2 = {
-            enable = true;
+            # enable = true;
             enableDemoAgent = true;
           };
         };

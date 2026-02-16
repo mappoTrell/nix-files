@@ -20,12 +20,14 @@
     in [
       # from local bindings.
       customEmacs
-      eg.niri
+      # eg.niri
+
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
+      <eg/niri>
       den.aspects.setHost
       # from the `eg` namespace.
-      eg.autologin
+      # eg.autologin
       # den included batteries that provide common configs.
       <den/primary-user> # alice is admin always.
       (<den/user-shell> "fish") # default user shell
@@ -34,6 +36,7 @@
     # Alice configures NixOS hosts it lives on.
     nixos = {pkgs, ...}: {
       users.users.xelix.packages = [pkgs.vim];
+      users.users.xelix.initialPassword = "123";
     };
 
     # Alice home-manager.
