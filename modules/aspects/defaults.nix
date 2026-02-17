@@ -13,7 +13,7 @@
     darwin.system.stateVersion = 6;
     nixos.system.stateVersion = lib.mkDefault "25.05";
     homeManager.home.stateVersion = lib.mkDefault "25.05";
-    experimental-features = ["nix-command" "flakes"];
+    nix.settings.experimental-features = ["nix-command" "flakes"];
   };
 
   # These are functions that produce configs

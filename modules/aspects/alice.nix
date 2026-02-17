@@ -37,6 +37,7 @@
     # Alice configures NixOS hosts it lives on.
     nixos = {pkgs, ...}: {
       users.users.xelix.packages = [pkgs.vim];
+      nix.settings.experimental-features = ["nix-command" "flakes"];
 
       # users.users.xelix.initialPassword = "123";
     };
@@ -48,7 +49,7 @@
        pkgs.neovim
        pkgs.git
        pkgs.ghostty
-       pkgs.zen
+       pkgs.firefox
       ];
     };
 

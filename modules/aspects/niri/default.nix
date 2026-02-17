@@ -49,7 +49,7 @@
             satty
             celluloid
             loupe
-            # dsearch
+            dsearch
           ];
         };
         services.displayManager = {
