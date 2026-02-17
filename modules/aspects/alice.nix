@@ -25,9 +25,10 @@
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
       <eg/niri>
+      eg.nh
       den.aspects.setHost
       # from the `eg` namespace.
-      eg.autologin
+      # eg.autologin
       # den included batteries that provide common configs.
       <den/primary-user> # alice is admin always.
       (<den/user-shell> "fish") # default user shell
@@ -36,12 +37,19 @@
     # Alice configures NixOS hosts it lives on.
     nixos = {pkgs, ...}: {
       users.users.xelix.packages = [pkgs.vim];
-      users.users.xelix.initialPassword = "123";
+
+      # users.users.xelix.initialPassword = "123";
     };
 
     # Alice home-manager.
     homeManager = {pkgs, ...}: {
-      home.packages = [pkgs.htop];
+      home.packages = [
+       pkgs.htop
+       pkgs.neovim
+       pkgs.git
+       pkgs.ghostty
+       pkgs.zen
+      ];
     };
 
     # <user>.provides.<host>, via eg/routes.nix

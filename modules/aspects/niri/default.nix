@@ -130,6 +130,7 @@
             };
             touchpad = {
               tap = true;
+
               dwt = true;
               drag = true;
               click-method = "clickfinger";
@@ -198,7 +199,7 @@
                 "Mod+Space".action = dms "spotlight toggle";
                 "Mod+Shift+Space".action.spawn-sh = "systemctl --user restart vicinae.service";
 
-                "Mod+Return".action.spawn = "wezterm";
+                "Mod+Return".action.spawn = "ghostty";
                 "Mod+B".action.spawn = "zen";
 
                 "Mod+W".action.toggle-overview = [];

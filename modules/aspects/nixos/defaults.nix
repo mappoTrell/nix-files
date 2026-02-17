@@ -9,6 +9,8 @@
     # igloo host provides some home-manager defaults to its users.
     homeManager.programs.direnv.enable = true;
 
+    homeManager.home.stateVersion = "24.11"; # Please read the comment before changing.
+
     includes = [
       eg.nvidia
       eg.bootloader
@@ -18,6 +20,7 @@
 
     nixos = {pkgs, ...}: {
       environment.systemPackages = [pkgs.hello];
+      system.stateVersion = "24.05"; # Did you read the comment?
     };
 
     # <host>.provides.<user>, via eg/routes.nix

@@ -9,5 +9,6 @@
       # <eg/niri>
       # eg._.niri
     ];
+    
   };
 }

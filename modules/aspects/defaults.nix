@@ -3,14 +3,17 @@
   # deadnix: skip # enable <den/brackets> syntax for demo.
   __findFile ? __findFile,
   den,
+  pkgs,
+  lib,
   ...
 }: {
   # Lets also configure some defaults using aspects.
   # These are global static settings.
   den.default = {
     darwin.system.stateVersion = 6;
-    nixos.system.stateVersion = "25.05";
-    homeManager.home.stateVersion = "25.05";
+    nixos.system.stateVersion = lib.mkDefault "25.05";
+    homeManager.home.stateVersion = lib.mkDefault "25.05";
+    experimental-features = ["nix-command" "flakes"];
   };
 
   # These are functions that produce configs
