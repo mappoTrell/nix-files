@@ -25,8 +25,8 @@
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
       eg.niri
-      eg.qutebrowser
-      # <eg/qutebrowser>
+      # eg.qutebrowser
+      <eg/qutebrowser>
       eg.nh
       den.aspects.setHost
       # from the `eg` namespace.

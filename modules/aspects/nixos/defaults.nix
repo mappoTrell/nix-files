@@ -15,6 +15,7 @@
       eg.nvidia
       eg.bootloader
       eg.ly
+      eg.system.bluetooth
       # eg.laptop
     ];
 

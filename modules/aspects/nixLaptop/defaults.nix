@@ -10,6 +10,7 @@
     homeManager.programs.direnv.enable = true;
 
     includes = [
+    <eg/bluetooth>
       # eg.laptop
     ];
 

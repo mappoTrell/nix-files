@@ -1,6 +1,6 @@
 {
   
-eg.qutebrowser.home = { 
+eg.qutebrowser.homeManager = { 
   # config,
   pkgs,
   # inputs,
