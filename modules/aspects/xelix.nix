@@ -1,7 +1,6 @@
 {
   den,
   eg,
-  pkgs,
   ...
 }: {
   den.aspects.xelix = {
@@ -26,6 +25,7 @@
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
       eg.niri
+      eg.ghostty
       # eg.qutebrowser
       <eg/qutebrowser>
       eg.nh
@@ -35,24 +35,25 @@
       # den included batteries that provide common configs.
       <den/primary-user> # alice is admin always.
       (<den/user-shell> "fish") # default user shell
-      (<eg/theming/theme> "${pkgs.base16-schemes}/share/themes/rose-pine-dawn.yaml")
+      (<eg/theming/theme> "rose-pine")
     ];
 
     # Alice configures NixOS hosts it lives on.
     nixos = {pkgs, ...}: {
       users.users.xelix.packages = [pkgs.vim];
       nix.settings.experimental-features = ["nix-command" "flakes"];
+      home-manager.backupFileExtension = "hm-back";
 
       # users.users.xelix.initialPassword = "123";
     };
 
     # Alice home-manager.
     homeManager = {pkgs, ...}: {
+
       home.packages = [
        pkgs.htop
        pkgs.neovim
        pkgs.git
-       pkgs.ghostty
        pkgs.firefox
       ];
     };

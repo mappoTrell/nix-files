@@ -7,12 +7,36 @@
 
   };
   
-  eg.theming.provides.theme = {theme, ...} : {
-    nixos = {
+  eg.theming.provides.theme = theme : {
+    nixos = {pkgs,config, ...}: {
       imports = [inputs.stylix.nixosModules.stylix];
       stylix = {
         enable = true;
-        base16 = theme;
+        
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrains Mono Nerd Font";
+      };
+      sansSerif = {
+        package = pkgs.source-sans-pro;
+        name = "Source Sans Pro";
+      };
+      # serif = config.stylix.fonts.sansSerif;
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+      sizes = {
+        applications = 13;
+        desktop = 13;
+        popups = 13;
+        terminal = 18;
+      };
+    };
+
+    polarity = "dark";
+        base16Scheme =  "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
       };
     };
   };

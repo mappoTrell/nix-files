@@ -9,10 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:AvengeMedia/DankMaterialShell";
     };
-    dankMaterialShell = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:AvengeMedia/DankMaterialShell";
-    };
     darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-darwin/nix-darwin";
@@ -34,8 +30,12 @@
       url = "github:sodiboo/niri-flake";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
     nixpkgs-lib.follows = "nixpkgs";
+    stylix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/stylix";
+    };
     systems.url = "github:nix-systems/default";
   };
 

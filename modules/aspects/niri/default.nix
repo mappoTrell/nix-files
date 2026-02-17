@@ -114,12 +114,12 @@
           enable = true;
           systemd.enable = true;
         };
-        dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-        xdg.configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
-        gtk.theme = {
-          package = pkgs.colloid-gtk-theme;
-          name = "Colloid";
-        };
+        # dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+        # xdg.configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
+        # gtk.theme = {
+        #   package = pkgs.colloid-gtk-theme;
+        #   name = "Colloid";
+        # };
         programs.niri.settings = {
           input = {
             mouse.accel-profile = "flat";
