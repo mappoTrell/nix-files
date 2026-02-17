@@ -24,7 +24,9 @@
 
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
-      <eg/niri>
+      eg.niri
+      eg.qutebrowser
+      # <eg/qutebrowser>
       eg.nh
       den.aspects.setHost
       # from the `eg` namespace.
@@ -38,7 +40,6 @@
     nixos = {pkgs, ...}: {
       users.users.xelix.packages = [pkgs.vim];
       nix.settings.experimental-features = ["nix-command" "flakes"];
-
       # users.users.xelix.initialPassword = "123";
     };
 

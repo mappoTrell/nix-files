@@ -39,6 +39,6 @@ eg.qutebrowser.home = {
     pkgs.gnupg
     pkgs.pinentry-qt
   ];
-}
+};
 
 }
