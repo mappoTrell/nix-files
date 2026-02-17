@@ -1,6 +1,7 @@
 {
   den,
   eg,
+  pkgs,
   ...
 }: {
   den.aspects.xelix = {
@@ -34,12 +35,14 @@
       # den included batteries that provide common configs.
       <den/primary-user> # alice is admin always.
       (<den/user-shell> "fish") # default user shell
+      (<eg/theming/theme> "${pkgs.base16-schemes}/share/themes/rose-pine-dawn.yaml")
     ];
 
     # Alice configures NixOS hosts it lives on.
     nixos = {pkgs, ...}: {
       users.users.xelix.packages = [pkgs.vim];
       nix.settings.experimental-features = ["nix-command" "flakes"];
+
       # users.users.xelix.initialPassword = "123";
     };
 
