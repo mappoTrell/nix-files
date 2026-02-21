@@ -26,8 +26,13 @@
 
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
-      eg.system
       den.aspects.setHost
+      eg.niri
+      eg.ghostty
+      eg.nh
+      <eg/dev/zellij>
+      <eg/dev/direnv>
+      <eg/qutebrowser>
       # eg.autologin
       # den included batteries that provide common configs.
       <den/primary-user> # alice is admin always.

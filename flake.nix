@@ -38,6 +38,10 @@
       url = "github:nix-community/stylix";
     };
     systems.url = "github:nix-systems/default";
+    zellij-command-hook = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Zach-Mac/zellij-command-hook";
+    };
   };
 
 }

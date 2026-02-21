@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   flake-file.inputs = {
     zellij-command-hook = {
       url = "github:Zach-Mac/zellij-command-hook";
@@ -6,27 +10,29 @@
     };
   };
 
-  eg.dev._.zellij.homeManager = {
+  eg.dev._.zellij = {
     user,
     host,
-    pkgs,
+    # pkgs,
     ...
   }: {
-    home.packages = [
-      inputs."zellij-command-hook".packages.${host.system}.default
-    ];
-    programs.zellij = {
-      enable = true;
+    homeManager = {pkgs, ...}: {
+      home.packages = [
+        inputs."zellij-command-hook".packages.${host.system}.default
+      ];
+      programs.zellij = {
+        enable = true;
 
-      eableFishIntegration = user.conf.shell == "fish";
-      enableBashIntegration = user.conf.shell == "bash";
-      enableZshIntegration = user.conf.shell == "zsh";
-    };
+        enableFishIntegration = user.conf.shell == "fish";
+        enableBashIntegration = user.conf.shell == "bash";
+        enableZshIntegration = user.conf.shell == "zsh";
+      };
 
-    xdg.configFile."zellij/config.kdl".source = ./zellij.kdl;
-    xdg.configFile."zellij/plugins/zsm.wasm".source = pkgs.fetchurl {
-      url = "https://github.com/liam-mackie/zsm/releases/download/v0.4.1/zsm.wasm";
-      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+      xdg.configFile."zellij/config.kdl".source = ./zellij.kdl;
+      xdg.configFile."zellij/plugins/zsm.wasm".source = pkgs.fetchurl {
+        url = "https://github.com/liam-mackie/zsm/releases/download/v0.4.1/zsm.wasm";
+        hash = "sha256-+VCf9MEHQVmr2q8lu95jAOsvCQU0iJa3ljqbnIC9ywg=";
+      };
     };
   };
 }
