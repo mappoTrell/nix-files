@@ -8,7 +8,6 @@
     # For small, private one-shot aspects, use let-bindings like here.
     # for more complex or re-usable ones, define on their own modules,
     # as part of any aspect-subtree.
-    shell = "fish";
 
     includes = let
       # hack for nixf linter to keep findFile :/
@@ -27,20 +26,15 @@
 
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
-      eg.niri
-      eg.ghostty
-
-      # eg.qutebrowser
-      <eg/qutebrowser>
-      eg.nh
+      eg.system
       den.aspects.setHost
-      <eg/dev/direnv>
-      # from the `eg` namespace.
       # eg.autologin
       # den included batteries that provide common configs.
       <den/primary-user> # alice is admin always.
-      ({user, ...}: <den/user-shell> user.shell) # default user shell
-      (<eg/theming/theme> "rose-pine")
+      (<den/user-shell> "fish")
+
+      # ({user, ...}: <den/user-shell> user.shell) # default user shell
+      <eg/theming/theme>
     ];
 
     # Alice configures NixOS hosts it lives on.
@@ -79,7 +73,9 @@
   den.aspects.cooper = {user, ...}: {
     nixos.users.users.${user.userName}.description = "Felix Scherb";
   };
-
+  den.aspects.foo = {user, ...} @ context: (builtins.trace context {
+    user = user.user-params;
+  });
   den.aspects.setHost = {host, ...}: {
     networking.hostName = host.hostName;
   };

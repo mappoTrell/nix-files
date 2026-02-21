@@ -6,7 +6,7 @@
     };
   };
 
-  eg.theming.provides.theme = theme: {
+  eg.theming.provides.theme = {user, ...}: {
     homeManager = {
       stylix.targets.dank-material-shell.enable = false;
     };
@@ -48,7 +48,7 @@
         };
 
         polarity = "dark";
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/${user.conf.theme}.yaml";
 
         image = pkgs.fetchurl {
           url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/anime-skyline_purple.png";

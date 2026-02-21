@@ -6,8 +6,9 @@
   ...
 }: {
   den.aspects.nixos = {aspects, ...}: {
+    shell = "fish";
     # igloo host provides some home-manager defaults to its users.
-    homeManager.programs.direnv.enable = true;
+    # homeManager.programs.direnv.enable = true;
 
     homeManager.home.stateVersion = "24.11"; # Please read the comment before changing.
 
@@ -15,7 +16,8 @@
       eg.nvidia
       eg.bootloader
       eg.ly
-      eg.system.bluetooth
+      # eg.system.bluetooth
+      <eg/system/bluetooth>
       # eg.laptop
     ];
 
