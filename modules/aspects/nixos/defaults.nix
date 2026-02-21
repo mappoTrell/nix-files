@@ -24,6 +24,8 @@
     nixos = {pkgs, ...}: {
       environment.systemPackages = [pkgs.hello];
       system.stateVersion = "24.05"; # Did you read the comment?
+
+      time.timeZone = "Europe/Berlin";
     };
 
     # <host>.provides.<user>, via eg/routes.nix

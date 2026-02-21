@@ -31,6 +31,7 @@
       eg.ghostty
       eg.nh
       <eg/dev/zellij>
+      <eg/dev/zoxide>
       <eg/dev/direnv>
       <eg/qutebrowser>
       # eg.autologin
@@ -57,6 +58,7 @@
       self',
       ...
     }: {
+      programs.fish.enable = true;
       home.packages = [
         pkgs.htop
         pkgs.neovim
