@@ -8,10 +8,13 @@
     # For small, private one-shot aspects, use let-bindings like here.
     # for more complex or re-usable ones, define on their own modules,
     # as part of any aspect-subtree.
+    shell = "fish";
+
     includes = let
       # hack for nixf linter to keep findFile :/
       unused = den.lib.take.unused __findFile;
       __findFile = unused den.lib.__findFile;
+      # shell = "fish";
 
       customEmacs.homeManager = {pkgs, ...}: {
         programs.emacs.enable = true;
@@ -26,15 +29,17 @@
       den.aspects.cooper
       eg.niri
       eg.ghostty
+
       # eg.qutebrowser
       <eg/qutebrowser>
       eg.nh
       den.aspects.setHost
+      <eg/dev/direnv>
       # from the `eg` namespace.
       # eg.autologin
       # den included batteries that provide common configs.
       <den/primary-user> # alice is admin always.
-      (<den/user-shell> "fish") # default user shell
+      ({user, ...}: <den/user-shell> user.shell) # default user shell
       (<eg/theming/theme> "rose-pine")
     ];
 
@@ -48,13 +53,17 @@
     };
 
     # Alice home-manager.
-    homeManager = {pkgs, ...}: {
-
+    homeManager = {
+      pkgs,
+      self',
+      ...
+    }: {
       home.packages = [
-       pkgs.htop
-       pkgs.neovim
-       pkgs.git
-       pkgs.firefox
+        pkgs.htop
+        pkgs.neovim
+        self'.packages.my-nvf
+        pkgs.git
+        pkgs.firefox
       ];
     };
 

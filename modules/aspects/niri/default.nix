@@ -1,5 +1,4 @@
 {
-  eg,
   inputs,
   lib,
   niri-lib,
@@ -36,7 +35,6 @@
         pkgs,
         ...
       }: {
-        imports = [inputs.dank-material-shell.nixosModules.greeter];
         environment = {
           # fixes zap proxy
           # making gui apps with java should be banned.
@@ -67,22 +65,22 @@
           dconf.enable = true;
           niri.enable = true;
           niri.package = pkgs.niri;
-          dank-material-shell.greeter = {
-            # enable = true;
-            configHome = "/home/xelix";
-            compositor.name = "niri";
-            # compositor.customConfig = inputs.niri.lib.kdl.serialize.nodes (
-            #   builtins.filter (
-            #     n:
-            #       lib.elem n.name [
-            #         "hotkey-overlay"
-            #         "input"
-            #         "output"
-            #       ]
-            #   )
-            #   config.home-manager.users.quasi.programs.niri.config
-            # );
-          };
+          # dank-material-shell.greeter = {
+          #   # enable = true;
+          #   configHome = "/home/xelix";
+          #   compositor.name = "niri";
+          #   # compositor.customConfig = inputs.niri.lib.kdl.serialize.nodes (
+          #   #   builtins.filter (
+          #   #     n:
+          #   #       lib.elem n.name [
+          #   #         "hotkey-overlay"
+          #   #         "input"
+          #   #         "output"
+          #   #       ]
+          #   #   )
+          #   #   config.home-manager.users.quasi.programs.niri.config
+          #   # );
+          # };
         };
         services = {
           # accounts-daemon.enable = true;
@@ -102,13 +100,14 @@
         imports = [
           inputs.niri.homeModules.config
           inputs.dank-material-shell.homeModules.dank-material-shell
+          # inputs.niri.homeModules.stylix
         ];
-        services.swww.enable = true;
+        # services.swww.enable = true;
         home.packages = with pkgs; [
           # Used by vicinae extensions
           playerctl
           pulseaudio # pactl
-          swww
+          #swww
         ];
         programs.dank-material-shell = {
           enable = true;
@@ -124,6 +123,8 @@
           input = {
             mouse.accel-profile = "flat";
             warp-mouse-to-focus.enable = true;
+
+            keyboard.xkb.options = "compose:ralt";
             focus-follows-mouse = {
               enable = true;
               max-scroll-amount = "0%";
@@ -168,12 +169,15 @@
 
           layout = {
             border = {
-              enable = false;
-              width = 1;
+              enable = true;
+              width = 2;
             };
-            focus-ring.enable = true;
-            shadow.enable = true;
-            gaps = 8;
+            focus-ring.enable = false;
+            shadow.enable = false;
+            gaps = 16;
+            struts.left = 24;
+            struts.right = 24;
+            always-center-single-column = true;
             default-column-width.proportion = 0.66667;
           };
 
@@ -197,10 +201,12 @@
                 "Mod+Q".action.close-window = [];
 
                 "Mod+Space".action = dms "spotlight toggle";
+                "Mod+X".action = dms "powermenu toggle";
+                "Mod+V".action = dms "clipboard toggle";
                 "Mod+Shift+Space".action.spawn-sh = "systemctl --user restart vicinae.service";
 
                 "Mod+Return".action.spawn = "ghostty";
-                "Mod+B".action.spawn = "zen";
+                "Mod+B".action.spawn = "qutebrowser";
 
                 "Mod+W".action.toggle-overview = [];
                 "Mod+O".action.show-hotkey-overlay = [];

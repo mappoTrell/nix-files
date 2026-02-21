@@ -77,11 +77,11 @@
     # base0F= "#56526e";
     #   };
 
-    cursor = {
-      name = "rose-pine-cursor";
-      package = with pkgs; rose-pine-hyprcursor;
-      size = 20;
-    };
+    # cursor = {
+    #   name = "rose-pine-cursor";
+    #   package = with pkgs; rose-pine-hyprcursor;
+    #   size = 20;
+    # };
 
     fonts = {
       monospace = {
@@ -108,7 +108,7 @@
     polarity = "dark";
     image = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/vanilla_pink_purple.png";
-      sha256 = "sha256-JJIsoC3MaUB378RfogU7BDuXOuy7Vk048CwfyNe9FYg=";
+      sha256 = "sha256-ywhiNf1zANksKkk066aJirOqa0d1rPuijKUFAljDp/M=";
     };
   };
 }

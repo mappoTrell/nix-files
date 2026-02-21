@@ -32,6 +32,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
     nixpkgs-lib.follows = "nixpkgs";
+    nvf.url = "github:notashelf/nvf";
     stylix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/stylix";
