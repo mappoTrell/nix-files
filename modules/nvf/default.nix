@@ -26,6 +26,8 @@
                 pkgs.fd
                 pkgs.ripgrep
                 pkgs.zoxide
+                pkgs.wl-clipboard
+                pkgs.cliphist
 
                 # pkgs.arduino-language-server
                 # pkgs.arduino-cli

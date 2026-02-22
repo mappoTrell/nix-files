@@ -33,6 +33,7 @@
       <eg/dev/zellij>
       <eg/dev/zoxide>
       <eg/dev/direnv>
+      <eg/dev/git>
       <eg/qutebrowser>
       # eg.autologin
       # den included batteries that provide common configs.
@@ -63,7 +64,7 @@
         pkgs.htop
         pkgs.neovim
         self'.packages.my-nvf
-        pkgs.git
+        # pkgs.git
         pkgs.firefox
       ];
     };
