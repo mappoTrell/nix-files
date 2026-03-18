@@ -12,7 +12,16 @@
     den._.inputs'
   ];
 
-  perSystem = {pkgs, ...}: {
+  perSystem = {pkgs, ...}: let
+    choiceScript = target:
+      pkgs.writeShellScriptBin "find_script" ''
+        path_to_executable=$(which ${target})
+         if [ -x "$path_to_executable" ] ; then
+              exec ${target} "$@"
+        fi
+        exec ${pkgs.lib.getExe pkgs.${target}} "$@"
+      '';
+  in {
     packages.my-nvf =
       (inputs.nvf.lib.neovimConfiguration {
         pkgs = pkgs;
@@ -28,6 +37,7 @@
                 pkgs.zoxide
                 pkgs.wl-clipboard
                 pkgs.cliphist
+                pkgs.zls
 
                 # pkgs.arduino-language-server
                 # pkgs.arduino-cli
@@ -39,14 +49,22 @@
               theme.style = "main";
               theme.transparent = true;
 
+              lsp.servers."zls".cmd = pkgs.lib.mkForce ["${pkgs.lib.getExe (choiceScript "zls")}"];
+
               languages = {
+                # enableTreesitter = ["lua"];
+
                 enableFormat = true;
                 nix.enable = true;
                 nix.extraDiagnostics.enable = true;
+                nix.treesitter.enable = true;
+
+                lua.enable = true;
 
                 zig = {
                   enable = true;
                   lsp.enable = true;
+                  # lsp.package = ["];
                   treesitter.enable = true;
                 };
 
@@ -110,6 +128,21 @@
               #     path = "[Path]";
               #   };
               # };
+              snippets.luasnip = {
+                enable = true;
+                customSnippets.snipmate = {
+                  zig = [
+                    {
+                      trigger = "sc";
+                      body = ".{$1},";
+                    }
+                    {
+                      trigger = "ss";
+                      body = ".{$1};";
+                    }
+                  ];
+                };
+              };
 
               autocomplete.blink-cmp = {
                 enable = true;
@@ -121,7 +154,11 @@
                   cmdline.sources = null;
                   cmdline.completion.menu.auto_show = true;
 
-                  signature.enabled = true;
+                  completion.accept.auto_brackets.enable = false;
+
+                  snippets = {preset = "luasnip";};
+
+                  signature.enable = true;
 
                   sources.default = [
                     "lsp"
@@ -136,7 +173,6 @@
                       fallbacks = ["buffer"];
                     };
                   };
-                  completion.accept.auto_brackets.enabled = false;
                 };
               };
 
@@ -225,6 +261,7 @@
                 pairs.enable = true;
               };
               #
+
               extraPlugins = {
                 # mini-sessions = {
                 #   package = "mini-sessions";
@@ -239,30 +276,55 @@
                 #
                 mini-ai = {
                   package = "mini-ai";
-                  setup = "require('mini.ai').setup()";
+                  setup =
+                    /*
+                    lua
+                    */
+                    ''
+                        local spec = require('mini.ai').gen_spec
+                        require('mini.ai').setup({
+
+                        custom_textobjects = {
+                          F = spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+                          S = spec.pair('.{', '}', {type = 'non-balanced'}),
+                          e = spec.function_call({
+                            name_pattern = '[@%w+|%w+((%.%w+)+)?]',  -- Matches @ followed by word characters or just word characters, with an opening parenthesis
+                            include_delimiter = true,          -- Include the delimiter in the selection
+                          }),
+                          o = spec.treesitter({
+                            a = { '@class.outer', '@class.outer' },
+                            i = { '@class.inner', '@class.inner' },
+                          })
+                        },
+                      })'';
                 };
+
                 mini-basics = {
                   package = "mini-basics";
                   setup = "require('mini.basics').setup()";
                 };
                 mini-surround = {
                   package = "mini-surround";
-                  setup = "require('mini.surround').setup(
-              {
-              mappings = {
-              add = 'gsa', -- Add surrounding in Normal and Visual modes
-              delete = 'gsd', -- Delete surrounding
-              find = 'gsf', -- Find surrounding (to the right)
-              find_left = 'gsF', -- Find surrounding (to the left)
-              highlight = 'gsh', -- Highlight surrounding
-              replace = 'gsr', -- Replace surrounding
-              update_n_lines = 'gsn', -- Update `n_lines`
+                  setup =
+                    /*
+                    lua
+                    */
+                    ''
+                            require('mini.surround').setup({
+                            mappings = {
+                              add = 'gsa', -- Add surrounding in Normal and Visual modes
+                              delete = 'gsd', -- Delete surrounding
+                              find = 'gsf', -- Find surrounding (to the right)
+                              find_left = 'gsF', -- Find surrounding (to the left)
+                              highlight = 'gsh', -- Highlight surrounding
+                              replace = 'gsr', -- Replace surrounding
+                              update_n_lines = 'gsn', -- Update `n_lines`
 
-              suffix_last = 'l', -- Suffix to search with  prev  method
-              suffix_next = 'n', -- Suffix to search with  next  method
-              },
-              }
-              )";
+                              suffix_last = 'l', -- Suffix to search with  prev  method
+                              suffix_next = 'n', -- Suffix to search with  next  method
+                            },
+                          }
+                      )'';
                 };
                 #     mini-files = {
                 #       package = "mini-files";
@@ -282,9 +344,20 @@
                 enable = true;
                 inlayHints.enable = true;
                 formatOnSave = true;
+                otter-nvim.enable = true;
               };
               treesitter.enable = true;
-
+              treesitter.textobjects.enable = true;
+              treesitter.context.enable = true;
+              treesitter.highlight.enable = true;
+              treesitter.grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+                regex
+                kdl
+                lua
+                bash
+                python
+                nix
+              ];
               navigation.harpoon = {
                 enable = true;
                 setupOpts.defaults.save_on_toggle = true;

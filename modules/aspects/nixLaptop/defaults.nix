@@ -11,12 +11,16 @@
 
     includes = [
       <eg/bluetooth>
-      eg.system
+
+      eg.bootloader
+      eg.ly
       # eg.laptop
     ];
 
     nixos = {pkgs, ...}: {
       environment.systemPackages = [pkgs.hello];
+
+      time.timeZone = "Europe/Berlin";
     };
 
     # <host>.provides.<user>, via eg/routes.nix
