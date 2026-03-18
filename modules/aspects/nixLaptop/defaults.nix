@@ -7,10 +7,11 @@
 }: {
   den.aspects.nixLaptop = {aspects, ...}: {
     # igloo host provides some home-manager defaults to its users.
-    homeManager.programs.direnv.enable = true;
+    # homeManager.programs.direnv.enable = true;
+    homeManager.home.stateVersion = "24.11";
 
     includes = [
-      <eg/bluetooth>
+      <eg/system/bluetooth>
 
       eg.bootloader
       eg.ly
@@ -19,6 +20,7 @@
 
     nixos = {pkgs, ...}: {
       environment.systemPackages = [pkgs.hello];
+      system.stateVersion = "24.11";
 
       time.timeZone = "Europe/Berlin";
     };

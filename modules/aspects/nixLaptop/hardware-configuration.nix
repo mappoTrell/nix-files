@@ -8,8 +8,8 @@
     ...
   }: {
     imports = [
-      (modulesPath + "/installer/scan/not-detected.nix")
       inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
     boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod"];
