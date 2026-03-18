@@ -66,6 +66,8 @@
         self'.packages.my-nvf
         # pkgs.git
         pkgs.firefox
+        pkgs.kdePackages.dolphin
+        pkgs.lazygit
       ];
     };
 
