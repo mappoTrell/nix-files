@@ -30,6 +30,7 @@
       eg.niri
       eg.ghostty
       eg.nh
+      <eg/steam>
       <eg/dev/zellij>
       <eg/dev/zoxide>
       <eg/dev/direnv>
@@ -50,6 +51,13 @@
       nix.settings.experimental-features = ["nix-command" "flakes"];
       home-manager.backupFileExtension = "hm-back";
 
+      environment.systemPackages = [
+        pkgs.kdePackages.partitionmanager
+      ];
+
+      xdg.portal.enable = true;
+      xdg.portal.extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
+      qt.enable = true;
       # users.users.xelix.initialPassword = "123";
     };
 

@@ -154,11 +154,11 @@
                   cmdline.sources = null;
                   cmdline.completion.menu.auto_show = true;
 
-                  completion.accept.auto_brackets.enable = false;
+                  completion.accept.auto_brackets.enabled = false;
 
                   snippets = {preset = "luasnip";};
 
-                  signature.enable = true;
+                  signature.enabled = true;
 
                   sources.default = [
                     "lsp"
