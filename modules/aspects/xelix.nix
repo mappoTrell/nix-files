@@ -30,7 +30,7 @@
       eg.niri
       eg.ghostty
       eg.nh
-      <eg/steam>
+      eg.gaming
       <eg/dev/zellij>
       <eg/dev/zoxide>
       <eg/dev/direnv>
