@@ -9,6 +9,7 @@
 }: {
   # Lets also configure some defaults using aspects.
   # These are global static settings.
+  den.schema.host.homeManager.enable = true;
   den.default = {
     darwin.system.stateVersion = 6;
     nixos.system.stateVersion = lib.mkDefault "25.05";
@@ -24,7 +25,7 @@
     # <eg/niri>
 
     # Enable home-manager on all hosts.
-    <den/home-manager>
+    # <den/home-manager>
 
     # Automatically create the user on host.
     <den/define-user>
@@ -36,6 +37,8 @@
       else {}
     )
 
+    # den.provides.hostname
+
     # NOTE: be cautious when adding fully parametric functions to defaults.
     # defaults are included on EVERY host/user/home, and IF you are not careful
     # you could be duplicating config values. For example:
@@ -44,14 +47,14 @@
     #  ({ host, ... }: { nixos.foo = [ 42 ]; }) # DO-NOT-DO-THIS.
     #
     #  # Instead try to be explicit if a function is intended for ONLY { host }.
-    (den.lib.take.exactly (
-      {
-        OS,
-        host,
-      }:
-        den.lib.take.unused OS {
-          nixos.networking.hostName = host.hostName;
-        }
-    ))
+    # (den.lib.take.exactly (
+    #   {
+    #     OS,
+    #     host,
+    #   }:
+    #     den.lib.take.unused OS {
+    #       nixos.networking.hostName = host.hostName;
+    #     }
+    # ))
   ];
 }

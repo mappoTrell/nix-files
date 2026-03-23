@@ -3,6 +3,10 @@
   eg,
   ...
 }: {
+  den.ctx.hm-host.includes = [
+    ({host, ...}: {nixos.home-manager.backupFileExtension = "hm-back";})
+  ];
+
   den.aspects.xelix = {
     # Alice can include other aspects.
     # For small, private one-shot aspects, use let-bindings like here.
@@ -26,7 +30,7 @@
 
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
-      den.aspects.setHost
+      # den.aspects.setHost
       eg.niri
       eg.ghostty
       eg.nh
@@ -49,7 +53,7 @@
     nixos = {pkgs, ...}: {
       users.users.xelix.packages = [pkgs.vim];
       nix.settings.experimental-features = ["nix-command" "flakes"];
-      home-manager.backupFileExtension = "hm-back";
+      # home-manager.backupFileExtension = "hm-back";
 
       environment.systemPackages = [
         pkgs.kdePackages.partitionmanager
@@ -80,7 +84,7 @@
     };
 
     # <user>.provides.<host>, via eg/routes.nix
-    provides.xelix = {host, ...}: {
+    provides.to-hosts = {host, ...}: {
       nixos.programs.nh.enable = host.name == "xelix";
     };
   };
@@ -91,10 +95,10 @@
   den.aspects.cooper = {user, ...}: {
     nixos.users.users.${user.userName}.description = "Felix Scherb";
   };
-  den.aspects.foo = {user, ...} @ context: (builtins.trace context {
-    user = user.user-params;
-  });
-  den.aspects.setHost = {host, ...}: {
-    networking.hostName = host.hostName;
-  };
+  # den.aspects.foo = {user, ...} @ context: (builtins.trace context {
+  #   user = user.user-params;
+  # });
+  # den.aspects.setHost = {host, ...}: {
+  #   networking.hostName = host.hostName;
+  # };
 }

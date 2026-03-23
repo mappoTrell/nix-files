@@ -29,8 +29,8 @@
     };
 
     # <host>.provides.<user>, via eg/routes.nix
-    provides.xelix = {user, ...}: {
-      homeManager.programs.helix.enable = user.name == "xelix";
-    };
+    # provides.xelix = {user, ...}: {
+    #   homeManager.programs.helix.enable = user.name == "xelix";
+    # };
   };
 }

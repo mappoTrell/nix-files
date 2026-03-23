@@ -25,7 +25,7 @@
       fsType = "ext4";
     };
 
-    environment.systemPackages = [pkgs.neofetch];
+    environment.systemPackages = [pkgs.fastfetch];
 
     fileSystems."/boot" = {
       device = "/dev/disk/by-uuid/72E7-022E";
