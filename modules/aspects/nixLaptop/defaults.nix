@@ -19,7 +19,10 @@
     ];
 
     nixos = {pkgs, ...}: {
-      environment.systemPackages = [pkgs.hello];
+      environment.systemPackages = [
+        pkgs.hello
+        pkgs.upower
+      ];
       system.stateVersion = "24.11";
 
       time.timeZone = "Europe/Berlin";

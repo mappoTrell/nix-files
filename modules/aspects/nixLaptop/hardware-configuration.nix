@@ -16,6 +16,9 @@
     boot.initrd.kernelModules = [];
     boot.kernelModules = ["kvm-amd"];
     boot.extraModulePackages = [];
+    boot.plymouth.enable = lib.mkForce false;
+
+    # hardware.enableAllHardware = true;
 
     fileSystems."/" = {
       device = "/dev/disk/by-uuid/2dd16fc7-6177-42c9-a3c4-5ec5b3382087";
