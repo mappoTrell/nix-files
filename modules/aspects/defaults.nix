@@ -28,8 +28,10 @@
     # <den/home-manager>
 
     # Automatically create the user on host.
-    <den/define-user>
-
+    # <den/define-user>
+    den.provides.define-user
+    # den.provides.self'
+    den.provides.inputs'
     # Disable booting when running on CI on all NixOS hosts.
     (
       if config ? _module.args.CI

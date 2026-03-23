@@ -30,6 +30,7 @@
 
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
+      den.aspects.foo
       # den.aspects.setHost
       eg.niri
       eg.ghostty
@@ -84,9 +85,9 @@
     };
 
     # <user>.provides.<host>, via eg/routes.nix
-    provides.to-hosts = {host, ...}: {
-      nixos.programs.nh.enable = host.name == "xelix";
-    };
+    # provides.to-hosts = {host, ...}: {
+    #   nixos.programs.nh.enable = host.name == "xelix";
+    # };
   };
 
   # This is a context-aware aspect, that emits configurations
@@ -95,9 +96,9 @@
   den.aspects.cooper = {user, ...}: {
     nixos.users.users.${user.userName}.description = "Felix Scherb";
   };
-  # den.aspects.foo = {user, ...} @ context: (builtins.trace context {
-  #   user = user.user-params;
-  # });
+  den.aspects.foo = {user, ...} @ context: (builtins.trace context {
+    user = user.user-params;
+  });
   # den.aspects.setHost = {host, ...}: {
   #   networking.hostName = host.hostName;
   # };
