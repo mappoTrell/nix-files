@@ -16,7 +16,9 @@ in {
     inherit conf;
   };
 
-  den.hosts.aarch64-linux.raspi.users.admin = {};
+  den.hosts.aarch64-linux.raspi.users.admin = {
+    classes = [];
+  };
 
   den.schema.user.classes = lib.mkDefault ["homeManager"];
   # den.ctx.user.includes = [den._.mutual-provider];
