@@ -21,6 +21,7 @@
     nixos = {pkgs, ...}: {
       environment.systemPackages = [
         pkgs.hello
+        pkgs.rpi-imager
         # pkgs.upower
       ];
       services.upower.enable = true;

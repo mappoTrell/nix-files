@@ -39,7 +39,7 @@
       else {}
     )
 
-    # den.provides.hostname
+    den.provides.hostname
 
     # NOTE: be cautious when adding fully parametric functions to defaults.
     # defaults are included on EVERY host/user/home, and IF you are not careful
