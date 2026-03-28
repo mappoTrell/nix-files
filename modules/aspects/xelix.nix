@@ -58,11 +58,13 @@
 
       environment.systemPackages = [
         pkgs.kdePackages.partitionmanager
+        pkgs.linux-wifi-hotspot
       ];
 
       xdg.portal.enable = true;
       xdg.portal.extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
       qt.enable = true;
+      services.gvfs.enable = true;
       # users.users.xelix.initialPassword = "123";
     };
 
@@ -80,8 +82,46 @@
         # pkgs.git
         pkgs.firefox
         pkgs.kdePackages.dolphin
+        pkgs.nautilus
         pkgs.lazygit
+        # pkgs.evince
+        pkgs.kdePackages.okular
+        # pkgs.kdePackages.plasma-workspace
       ];
+
+      programs.superfile.enable = true;
+
+      services.syncthing = {
+        enable = true;
+        settings.devices = {
+          nixos = {
+            id = "WL5DIUM-YMG3AOC-R37CXVI-QQ3FN7F-BHWDYAZ-B7FWKWZ-YJIUBAT-5LU4PAI";
+            name = "desktop";
+          };
+        };
+      };
+
+      xdg = {
+        enable = true;
+        mime.enable = true;
+        mimeApps.enable = true;
+        mimeApps.defaultApplications = {
+          "application/pdf" = ["org.kde.okular.desktop"];
+        };
+        desktopEntries = {
+          my-custom-app = {
+            name = "superfile";
+            comment = "superfile";
+            exec = "ghostty -e superfile";
+            # icon = "${pkgs.my-custom-app}/share/icons/hicolor/256x256/apps/my-custom-app.png";
+            terminal = false;
+            categories = ["Utility"];
+          };
+        };
+        # mime.defaultApplications = {
+        #   "application/pdf" = ["org.pwmt.zathura.desktop"];
+        # };
+      };
     };
 
     # <user>.provides.<host>, via eg/routes.nix
