@@ -36,10 +36,11 @@
       eg.ghostty
       eg.nh
       eg.gaming
-      <eg/dev/zellij>
-      <eg/dev/zoxide>
-      <eg/dev/direnv>
-      <eg/dev/git>
+      <eg/dev>
+      # <eg/dev/zellij>
+      # <eg/dev/zoxide>
+      # <eg/dev/direnv>
+      # <eg/dev/git>
       <eg/qutebrowser>
       # eg.autologin
       # den included batteries that provide common configs.
@@ -93,6 +94,7 @@
 
       services.syncthing = {
         enable = true;
+        tray.enable = true;
         settings = {
           folders = {
             uni = {
@@ -129,16 +131,6 @@
         mimeApps.enable = true;
         mimeApps.defaultApplications = {
           "application/pdf" = ["org.kde.okular.desktop"];
-        };
-        desktopEntries = {
-          my-custom-app = {
-            name = "superfile";
-            comment = "superfile";
-            exec = "ghostty -e superfile";
-            # icon = "${pkgs.my-custom-app}/share/icons/hicolor/256x256/apps/my-custom-app.png";
-            terminal = false;
-            categories = ["Utility"];
-          };
         };
         # mime.defaultApplications = {
         #   "application/pdf" = ["org.pwmt.zathura.desktop"];
