@@ -93,14 +93,32 @@
 
       services.syncthing = {
         enable = true;
-        settings.devices = {
-          nixos = {
-            id = "WL5DIUM-YMG3AOC-R37CXVI-QQ3FN7F-BHWDYAZ-B7FWKWZ-YJIUBAT-5LU4PAI";
-            name = "desktop";
+        settings = {
+          folders = {
+            uni = {
+              path = "~/Documents/uni6";
+              label = "uni";
+              id = "uni_folder_6";
+              devices = ["tabUltra" "nixos" "nixLaptop"];
+              versioning = {
+                type = "simple";
+                params.keep = "10";
+              };
+            };
           };
-          nixLaptop = {
-            id = "XEIK2PF-5BORUDT-X27EKMY-GHSA4BB-J23LRHT-NCJMUHV-OTN2V6A-MHDTKAL";
-            name = "nixLaptop";
+          devices = {
+            tabUltra = {
+              id = "T5W5W7V-YNTVR46-YI5ZAS5-BCONK7G-YNPTZ5J-OZ7XFTT-6KQFCQ6-UOWYRAU";
+              name = "tabUltra";
+            };
+            nixos = {
+              id = "WL5DIUM-YMG3AOC-R37CXVI-QQ3FN7F-BHWDYAZ-B7FWKWZ-YJIUBAT-5LU4PAI";
+              name = "nixos";
+            };
+            nixLaptop = {
+              id = "XEIK2PF-5BORUDT-X27EKMY-GHSA4BB-J23LRHT-NCJMUHV-OTN2V6A-MHDTKAL";
+              name = "nixLaptop";
+            };
           };
         };
       };
