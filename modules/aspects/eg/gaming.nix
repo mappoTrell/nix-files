@@ -1,10 +1,13 @@
-{
+{den, ...}: {
   eg.gaming = {
     user,
     host,
     # pkgs,
     ...
   }: {
+    includes = [
+      (den.provides.unfree ["nvidia-x11" "steam-unwrapped" "steam"])
+    ];
     nixos = {pkgs, ...}: {
       programs = {
         gamescope = {
