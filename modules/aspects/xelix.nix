@@ -98,6 +98,10 @@
             id = "WL5DIUM-YMG3AOC-R37CXVI-QQ3FN7F-BHWDYAZ-B7FWKWZ-YJIUBAT-5LU4PAI";
             name = "desktop";
           };
+          nixLaptop = {
+            id = "XEIK2PF-5BORUDT-X27EKMY-GHSA4BB-J23LRHT-NCJMUHV-OTN2V6A-MHDTKAL";
+            name = "nixLaptop";
+          };
         };
       };
 
