@@ -42,6 +42,7 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    superfile.url = "github:yorukot/superfile";
     zellij-command-hook = {
       url = "github:Zach-Mac/zellij-command-hook";
       inputs.nixpkgs.follows = "nixpkgs";

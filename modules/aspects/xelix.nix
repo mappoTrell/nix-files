@@ -30,17 +30,18 @@
 
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
-      den.aspects.foo
+      # den.aspects.foo
       # den.aspects.setHost
       eg.niri
       eg.ghostty
       eg.nh
       eg.gaming
-      <eg/dev>
-      # <eg/dev/zellij>
-      # <eg/dev/zoxide>
-      # <eg/dev/direnv>
-      # <eg/dev/git>
+      # <eg/dev>
+      <eg/dev/zellij>
+      <eg/dev/superfile>
+      <eg/dev/zoxide>
+      <eg/dev/direnv>
+      <eg/dev/git>
       <eg/qutebrowser>
       # eg.autologin
       # den included batteries that provide common configs.
@@ -51,6 +52,7 @@
       <eg/theming/theme>
     ];
 
+    myOption = true;
     # Alice configures NixOS hosts it lives on.
     nixos = {pkgs, ...}: {
       users.users.xelix.packages = [pkgs.vim];

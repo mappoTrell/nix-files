@@ -39,6 +39,8 @@
           # fixes zap proxy
           # making gui apps with java should be banned.
           variables.AWT_TOOLKIT = "MToolkit";
+          variables.QTWEBENGINE_FORCE_USE_GBM = 0;
+          variables.EDITOR = "nvim";
           variables._JAVA_AWT_WM_NONREPARENTING = 1;
           systemPackages = with pkgs; [
             xwayland-satellite

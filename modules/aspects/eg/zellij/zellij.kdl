@@ -4,6 +4,8 @@
 
 post_command_discovery_hook  "zellij-command-hook"
 
+theme "catppuccin-frappe"
+
 show_startup_tips false 
 
 default_layout "compact"
@@ -162,6 +164,7 @@ keybinds clear-defaults=true {
         bind "Ctrl Alt k" { MoveFocus "up"; }
         bind "Ctrl Alt l" { MoveFocusOrTab "right"; }
         bind "Ctrl Alt n" { NewPane; }
+        // bind "Ctrl Alt s" { NewPane "Stacked"; }
         bind "Ctrl Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }

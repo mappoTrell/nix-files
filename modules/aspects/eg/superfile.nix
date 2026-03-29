@@ -1,23 +1,33 @@
 {
   den,
   inputs,
+  lib,
+  config,
+  # stdenv,
   ...
 }: {
   flake-file.inputs = {
     superfile = {
       url = "github:yorukot/superfile";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   eg.dev._.superfile = {
+    options.myOption = lib.mkOption {
+      default = false;
+      description = "This is my custom option.";
+      type = lib.types.bool; # Specifies that the option should be a string
+    };
+
     homeManager = {
       pkgs,
-      stdenv,
+      # config,
+      # stdenv,
       ...
     }: {
       xdg.desktopEntries = {
-        my-custom-app = {
+        superfile = {
           name = "superfile";
           comment = "superfile";
           exec = "${pkgs.lib.getExe pkgs.ghostty} -e superfile";
@@ -26,9 +36,12 @@
           categories = ["Utility"];
         };
       };
+      home.packages = [
+        pkgs.wl-clipboard
+      ];
       programs.superfile = {
         enable = true;
-        package = inputs.superfile.packages.${stdenv.hostPlatform.system}.default;
+        # package = inputs.superfile.packages.${pkgs.stdenv.hostPlatform.system}.default;
       };
     };
   };
