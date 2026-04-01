@@ -1,6 +1,7 @@
 {
   den,
   lib,
+  inputs,
   ...
 }: let
   conf = {

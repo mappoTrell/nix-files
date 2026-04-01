@@ -76,6 +76,10 @@
         pkgs.kicad
       ];
 
+      environment.variables = {
+        QT_QPA_PLAFORM = "wayland";
+      };
+
       xdg.portal.enable = true;
       xdg.portal.extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
       qt.enable = true;
