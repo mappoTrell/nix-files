@@ -30,6 +30,7 @@
 
       # from the aspect tree, cooper example is defined bellow
       den.aspects.cooper
+      # eg.bootloader
       # den.aspects.foo
       # den.aspects.setHost
       eg.niri
@@ -41,6 +42,7 @@
       <eg/dev/superfile>
       <eg/dev/zoxide>
       <eg/dev/direnv>
+      <eg/dev/yazi>
       <eg/dev/git>
       <eg/qutebrowser>
       # eg.autologin
@@ -80,6 +82,8 @@
       programs.fish.enable = true;
       home.packages = [
         pkgs.htop
+        pkgs.keepassxc
+        pkgs.pavucontrol
         pkgs.neovim
         self'.packages.my-nvf
         # pkgs.git

@@ -5,8 +5,8 @@
   __findFile,
   ...
 }: {
-  den.aspects.nixos = {aspects, ...}: {
-    shell = "fish";
+  den.aspects.nixos = {
+    # shell = "fish";
     # igloo host provides some home-manager defaults to its users.
     # homeManager.programs.direnv.enable = true;
 
@@ -24,7 +24,6 @@
     nixos = {pkgs, ...}: {
       environment.systemPackages = [pkgs.hello];
       system.stateVersion = "24.05"; # Did you read the comment?
-
       time.timeZone = "Europe/Berlin";
     };
 

@@ -5,7 +5,7 @@
   __findFile,
   ...
 }: {
-  den.aspects.nixLaptop = {aspects, ...}: {
+  den.aspects.nixLaptop = {
     # igloo host provides some home-manager defaults to its users.
     # homeManager.programs.direnv.enable = true;
     homeManager.home.stateVersion = "24.11";
