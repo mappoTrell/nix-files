@@ -32,6 +32,7 @@
     den.provides.define-user
     # den.provides.self'
     den.provides.inputs'
+    # den.provides.self'
     # Disable booting when running on CI on all NixOS hosts.
     (
       if config ? _module.args.CI

@@ -1,26 +1,30 @@
 {
   den,
   inputs,
-  lib,
-  config,
-  # stdenv,
+  stdenv,
   ...
 }: {
   flake-file.inputs = {
     nix-yazi-plugins = {
-      url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.2.5";
+      url = "github:lordkekz/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  eg.dev._.yazi = {
-    homeManager = {pkgs, ...}: {
+  eg.dev._.yazi = {host, ...}: {
+    homeManager = {
+      pkgs,
+      # inputs',
+      # legacyPackages,
+      ...
+    }: {
       imports = [
-        (inputs.nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default)
+        (inputs.nix-yazi-plugins.legacyPackages.${host.system}.homeManagerModules.default)
       ];
 
       programs.yazi = {
         enable = true;
+        shellWrapperName = "y";
       };
 
       programs.yazi.yaziPlugins = {
@@ -30,7 +34,7 @@
           ouch.enable = true;
           hide-preview.enable = true;
           rich-preview.enable = true;
-          system-clipboard.enable = true;
+          # system-clipboard.enable = true;
           bypass.enable = true;
           recycle-bin.enable = true;
           glow.enable = true;

@@ -61,9 +61,19 @@
       nix.settings.experimental-features = ["nix-command" "flakes"];
       # home-manager.backupFileExtension = "hm-back";
 
+      hardware.saleae-logic.enable = true;
+
+      services.udev = {
+        enable = true;
+        packages = [pkgs.libsigrok];
+      };
+
+      programs.pulseview.enable = true;
+
       environment.systemPackages = [
         pkgs.kdePackages.partitionmanager
         pkgs.linux-wifi-hotspot
+        pkgs.kicad
       ];
 
       xdg.portal.enable = true;
@@ -91,6 +101,7 @@
         pkgs.kdePackages.dolphin
         pkgs.nautilus
         pkgs.lazygit
+        # pkgs.kicad
         # pkgs.evince
         pkgs.kdePackages.okular
         # pkgs.kdePackages.plasma-workspace
