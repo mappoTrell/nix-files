@@ -3,7 +3,7 @@
   eg,
   ...
 }: {
-  den.ctx.hm-host.includes = [
+  den.schema.hm-host.includes = [
     ({host, ...}: {nixos.home-manager.backupFileExtension = "hm-back";})
   ];
 

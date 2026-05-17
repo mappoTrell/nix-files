@@ -33,7 +33,7 @@
           starship.enable = true;
           ouch.enable = true;
           hide-preview.enable = true;
-          rich-preview.enable = true;
+          # rich-preview.enable = true;
           # system-clipboard.enable = true;
           bypass.enable = true;
           recycle-bin.enable = true;
