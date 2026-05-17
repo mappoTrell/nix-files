@@ -38,6 +38,7 @@
                 pkgs.wl-clipboard
                 pkgs.cliphist
                 pkgs.zls
+                pkgs.jdk
 
                 # pkgs.arduino-language-server
                 # pkgs.arduino-cli
@@ -67,6 +68,7 @@
                   # lsp.package = ["];
                   treesitter.enable = true;
                 };
+                java.enable = true;
 
                 html.enable = true;
                 ts.enable = true;

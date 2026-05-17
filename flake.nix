@@ -13,10 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     den.url = "github:vic/den";
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixos-raspberrypi/nixpkgs";
-    };
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -35,9 +31,7 @@
       url = "github:lordkekz/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-anywhere.url = "github:nix-community/nixos-anywhere";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
     nvf.url = "github:notashelf/nvf";
     stylix = {

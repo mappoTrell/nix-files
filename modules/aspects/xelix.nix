@@ -55,13 +55,30 @@
     ];
 
     myOption = true;
+
+    user = {pkgs, ...}: {
+      extraGroups = ["dialout"];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE67zi95Ni36JuP9QLqM0WhRwXHkhoZsjSsKnjraBSX8 xelix"
+      ];
+    };
     # Alice configures NixOS hosts it lives on.
     nixos = {pkgs, ...}: {
       users.users.xelix.packages = [pkgs.vim];
       nix.settings.experimental-features = ["nix-command" "flakes"];
       # home-manager.backupFileExtension = "hm-back";
+      virtualisation.podman = {
+        enable = true;
+        dockerCompat = true;
+      };
 
-      hardware.saleae-logic.enable = true;
+      # hardware.saleae-logic.enable = true;
+
+      services.openssh = {
+        enable = true;
+        settings.PasswordAuthentication = false;
+        settings.KbdInteractiveAuthentication = false;
+      };
 
       services.udev = {
         enable = true;
@@ -76,6 +93,13 @@
         pkgs.kicad
       ];
 
+      services.tailscale = {
+        enable = true;
+        authKeyFile = "/etc/tailscale/key";
+      };
+      environment.etc."tailscale/key".source = "/var/lib/secrets/tailscale-key";
+      environment.etc."tailscale/key".mode = "0400";
+
       environment.variables = {
         QT_QPA_PLAFORM = "wayland";
       };
@@ -84,6 +108,8 @@
       xdg.portal.extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
       qt.enable = true;
       services.gvfs.enable = true;
+
+      services.resolved.enable = true;
       # users.users.xelix.initialPassword = "123";
     };
 
