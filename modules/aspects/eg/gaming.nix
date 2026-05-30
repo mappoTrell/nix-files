@@ -12,7 +12,7 @@
       programs = {
         gamescope = {
           enable = true;
-          capSysNice = true;
+          # capSysNice = true;
 
           env = {
             DXVK_HDR = "1";

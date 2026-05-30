@@ -25,7 +25,7 @@
       };
     in [
       # from local bindings.
-      customEmacs
+      # customEmacs
       # eg.niri
 
       # from the aspect tree, cooper example is defined bellow

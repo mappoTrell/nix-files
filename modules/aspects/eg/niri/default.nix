@@ -2,6 +2,7 @@
   inputs,
   lib,
   niri-lib,
+  eg,
   den,
   ...
 }: {
@@ -28,6 +29,7 @@
   {
     includes = [
       #   styx.wayland._.base
+      eg.vicinae
       #   styx.apps._.vicinae
     ];
     nixos = {
