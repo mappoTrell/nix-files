@@ -39,6 +39,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     superfile.url = "github:yorukot/superfile";
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zellij-command-hook = {
       url = "github:Zach-Mac/zellij-command-hook";
       inputs.nixpkgs.follows = "nixpkgs";
