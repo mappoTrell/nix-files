@@ -7,40 +7,48 @@
   };
 
   eg.vicinae.homeManager = {pkgs, ...}: {
+    home.sessionVariables = {
+      QT_SCALE_FACTOR = 1;
+    };
     programs.vicinae = {
       enable = true;
       systemd = {
-        enable = true;
-        autoStart = true; # default: false
+        # enable = true;
+        # autoStart = true; # default: false
         # environment = {
-        #   USE_LAYER_SHELL = 1;
+        # QT_SCALE_FACTOR = 2;
+        # USE_LAYER_SHELL = 1;
         # };
       };
       settings = pkgs.lib.mkForce {
         close_on_focus_loss = true;
         consider_preedit = true;
         pop_to_root_on_close = true;
-        favicon_service = "twenty";
+        # favicon_service = "twenty";
         search_files_in_root = true;
         font = {
           normal = {
             size = 12;
-            family = "Maple Nerd Font";
+            family = "FiraCode Nerd Font";
           };
         };
-        theme = {
-          light = {
-            name = "vicinae-light";
-            icon_theme = "default";
-          };
-          dark = {
-            name = "vicinae-dark";
-            icon_theme = "default";
-          };
-        };
-        # launcher_window = {
-        #   opacity = 0.98;
+        # theme = {
+        #   light = {
+        #     name = "vicinae-light";
+        #     icon_theme = "default";
+        #   };
+        #   dark = {
+        #     name = "vicinae-dark";
+        #     icon_theme = "default";
+        #   };
         # };
+        launcher_window = {
+          client_side_decorations = {
+            enable = true;
+            border_width = 0;
+            shadow_size = 0;
+          };
+        };
         providers = {
           # Notice name difference. If declaring install and not installing manually, the name is different
           "system7/keepassxc" = {

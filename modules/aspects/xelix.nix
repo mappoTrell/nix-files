@@ -72,6 +72,10 @@
         dockerCompat = true;
       };
 
+      nix = {
+        trustedUsers = ["root" "daemon" "xelix"];
+      };
+
       # hardware.saleae-logic.enable = true;
 
       services.openssh = {
@@ -126,6 +130,7 @@
         pkgs.pavucontrol
         pkgs.neovim
         self'.packages.my-nvf
+        (pkgs.pass.withExtensions (ext: with ext; [pass-audit pass-otp pass-import pass-genphrase pass-update pass-tomb]))
         # pkgs.git
         pkgs.firefox
         pkgs.kdePackages.dolphin
@@ -138,6 +143,10 @@
       ];
 
       programs.superfile.enable = true;
+
+      gtk.gtk4.theme = null;
+
+      programs.lapce.enable = true;
 
       services.syncthing = {
         enable = true;

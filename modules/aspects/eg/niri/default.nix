@@ -156,9 +156,10 @@
         #   )
         #   host.displays;
 
-        # spawn-at-startup = [
-        #   {sh = "swww img -o HDMI-A-1 ${inputs.self + /assets/campfire.gif}";}
-        # ];
+        spawn-at-startup = [
+          {sh = "QT_SCALE_FACTOR=1.5 vicinae server";}
+          # {sh = "swww img -o HDMI-A-1 ${inputs.self + /assets/campfire.gif}";}
+        ];
 
         # cursor.theme = config.home.pointerCursor.name;
 
@@ -195,6 +196,12 @@
             };
             clip-to-geometry = true;
           }
+          {
+            matches = [{app-id = "vicinae";}];
+            border = {enable = false;};
+            focus-ring = {enable = false;};
+            shadow = {enable = false;};
+          }
         ];
 
         binds = let
@@ -204,9 +211,11 @@
             {
               "Mod+Q".action.close-window = [];
 
-              "Mod+Space".action = dms "spotlight toggle";
+              "Mod+Space".action.spawn-sh = "QT_SCALE_FACTOR=2 vicinae vicinae://toggle";
+              "Mod+P".action.spawn-sh = "vicinae vicinae://launch/@tinkerbells/vicinae-extension-pass-0/pass";
+              "Mod+V".action.spawn-sh = "vicinae vicinae://launch/clipboard/history";
               "Mod+X".action = dms "powermenu toggle";
-              "Mod+V".action = dms "clipboard toggle";
+              # "Mod+V".action = dms "clipboard toggle";
               "Mod+Shift+Space".action.spawn-sh = "systemctl --user restart vicinae.service";
 
               "Mod+Return".action.spawn = "ghostty";
